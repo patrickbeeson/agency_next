@@ -1,0 +1,9 @@
+# Python
+*__pycache__
+*.pyc
+
+# DB
+*.sqlite3
+
+# Apple
+*.DS_Store
