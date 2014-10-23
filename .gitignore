@@ -3,7 +3,7 @@ __pycache__
 *.pyc
 
 # DB
-*.sqlite3
+db.sqlite3
 
 # Apple
 *.DS_Store
