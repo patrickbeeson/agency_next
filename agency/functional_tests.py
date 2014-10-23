@@ -30,7 +30,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # Just below the experience section, Jane sees a list of folks
         # that work at the agency. By tapping the person's photo, Jane sees
-        # that person's name, title and location.
+        # that person's name, title and three words about that person.
 
         # A little more scrolling brings Jane to the end of the homepage, where
         # she sees a map of the agency's location and a form to use for
