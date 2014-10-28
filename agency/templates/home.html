@@ -1,0 +1,8 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    {% for headline in headline_list %}
+        {{ headline.headline }}
+        {{ headline.pk }}
+    {% endfor %}
+{% endblock content %}

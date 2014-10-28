@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import unittest
 
 
@@ -18,10 +19,18 @@ class NewVisitorTest(unittest.TestCase):
 
         # Jane notices the page title and header mention The Variable
         self.assertIn('The Variable', self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('The Variable', header_text)
+
+        # Jane sees a headline describing the agency as well as a number
+        # designating the number of the headline in the list
+        headline = self.browser.find_element_by_class('headline')
+        self.assertEqual(
+            headline.get_text(),
+            'Makers, Bakers, Screenprinters, Homebrewers.'
+        )
+
         self.fail('Finish the test')
-
-        # The homepage tells Jane about who the agency is and the work they do
-
         # Jane scrolls further down the page and sees a list of six projects
         # the agency has completed.
 

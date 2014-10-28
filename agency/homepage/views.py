@@ -1,5 +1,12 @@
-from django.http import HttpResponse
+from django.views.generic import TemplateView
+
+from headlines.models import Headline
 
 
-def home_page(request):
-    return HttpResponse('<html><title>The Variable</title></html>')
+class HomePageView(TemplateView):
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context['headline_list'] = Headline.objects.all()
+        return context

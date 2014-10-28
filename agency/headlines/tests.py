@@ -1,1 +1,19 @@
 from django.test import TestCase
+
+from headlines.models import Headline
+
+
+class HeadlineTest(TestCase):
+
+    def setUp(self):
+        Headline.objects.create(
+            headline='Makers, Bakers, Screenprinters, Homebrewers'
+        )
+
+    def test_headline_returns_headline(self):
+        """ Test if calling the headline object returns a headline """
+        headline = Headline.objects.get(
+            name='Makers, Bakers, Screenprinters, Homebrewers'
+        )
+        expected = 'Makers, Bakers, Screenprinters, Homebrewers'
+        self.assertEqual(headline, expected)
