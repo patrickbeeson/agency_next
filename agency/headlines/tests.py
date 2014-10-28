@@ -16,4 +16,8 @@ class HeadlineTest(TestCase):
             name='Makers, Bakers, Screenprinters, Homebrewers'
         )
         expected = 'Makers, Bakers, Screenprinters, Homebrewers'
-        self.assertEqual(headline, expected)
+        self.assertEqual(headline.headline, expected)
+
+    def tearDown(self):
+        headlines = Headline.objects.all()
+        headlines.delete()

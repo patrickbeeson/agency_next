@@ -5,4 +5,10 @@
         {{ headline.headline }}
         {{ headline.pk }}
     {% endfor %}
+
+    {% for client in client_list %}
+        {{ client.name }}
+        {{ client.logo }}
+        {{ client.website }}
+    {% endfor %}
 {% endblock content %}

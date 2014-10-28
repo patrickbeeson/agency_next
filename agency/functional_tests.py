@@ -35,7 +35,8 @@ class NewVisitorTest(unittest.TestCase):
         # the agency has completed.
 
         # Further down the page, Jane sees a list of other company logos,
-        # representing other clients the agency has had in the past.
+        # representing other clients the agency has had in the past. The list
+        # is displayed alphebetically.
 
         # Just below the experience section, Jane sees a list of folks
         # that work at the agency. By tapping the person's photo, Jane sees
