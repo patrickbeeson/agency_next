@@ -202,20 +202,25 @@ DJANGO_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'clients',
+    'headlines',
+    'homepage',
+    'staff',
+    'projects'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 INSTALLED_APPS += (
-    #'sorl.thumbnail',
-    #'contact_form',
-    #'ordered_model'
+    'sorl.thumbnail',
+    'contact_form',
+    'ordered_model'
 )
 
-#THUMBNAIL_DEBUG = False
+THUMBNAIL_DEBUG = False
 
-#THUMBNAIL = 'PNG'
+THUMBNAIL = 'PNG'
 ########## END APP CONFIGURATION
 
 

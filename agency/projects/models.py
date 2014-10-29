@@ -49,8 +49,7 @@ class Project(OrderedModel):
         unique_for_month=True
     )
     description = models.TextField(
-        default='',
-        help_text='No HTML allowed. Please use Markdown for formatting.'
+        default=''
     )
     categories = models.ManyToManyField(
         Category,
@@ -72,7 +71,7 @@ class Project(OrderedModel):
     )
 
     objects = models.Manager()
-    featured = QueryManager(is_featured=True)[:10]
+    featured = QueryManager(is_featured=True)
 
     class Meta(OrderedModel.Meta):
         pass
