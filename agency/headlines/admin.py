@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from headlines.models import Headline
+
+
+class HeadlineAdmin(admin.ModelAdmin):
+    list_display = ('headline',)
+
+admin.site.register(Headline, HeadlineAdmin)
