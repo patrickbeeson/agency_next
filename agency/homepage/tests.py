@@ -5,6 +5,7 @@ from settings import base
 from homepage.views import HomePageView
 from headlines.models import Headline
 from clients.models import Client
+from staff.models import Employee
 
 
 class HomePageTest(TestCase):
@@ -56,3 +57,30 @@ class HomePageClients(TestCase):
         os.remove(self.logo)
         clients = Client.objects.all()
         clients.delete()
+
+
+class HomePageStaff(TestCase):
+
+    def setUp(self):
+        self.path = os.path.join(base.MEDIA_ROOT, 'staff/mugshots')
+        self.mugshot = os.path.join(
+            self.path, os.path.basename(tempfile.mkstemp(suffix='.jpg')[1]))
+        Employee.objects.create(
+            first_name='Patrick',
+            middle_name='Scott',
+            last_name='Beeson',
+            title='Director of Digital Strategy',
+            brief_description='Mountains require grit',
+            mugshot=self.mugshot,
+            is_employed=True
+        )
+
+    def test_home_page_renders_staff_list(self):
+        employee_list = Employee.public.all()
+        response = self.client.get('/')
+        self.assertEqual(len(response.context['employee_list']), 1)
+
+    def tearDown(self):
+        os.remove(self.mugshot)
+        employees = Employee.objects.all()
+        employees.delete()

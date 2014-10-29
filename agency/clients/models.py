@@ -12,7 +12,8 @@ class Client(models.Model):
         default=''
     )
     logo = ImageField(
-        help_text='Client logo',
+        help_text='Please use JPG (JPEG) or PNG files only. Will be resized \
+            for public display.',
         upload_to='clients/logos',
         default=''
     )
