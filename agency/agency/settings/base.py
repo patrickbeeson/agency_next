@@ -208,12 +208,14 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 INSTALLED_APPS += (
-    'sorl.thumbnail',
+    #'sorl.thumbnail',
+    #'contact_form',
+    #'ordered_model'
 )
 
-THUMBNAIL_DEBUG = False
+#THUMBNAIL_DEBUG = False
 
-THUMBNAIL = 'PNG'
+#THUMBNAIL = 'PNG'
 ########## END APP CONFIGURATION
 
 
