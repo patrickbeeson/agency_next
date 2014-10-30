@@ -8,18 +8,19 @@ from clients.models import Client
 class ClientTest(TestCase):
 
     def setUp(self):
-        self.path = os.path.join(base.MEDIA_ROOT, 'clients/logos')
-        self.logo = os.path.join(
-            self.path, os.path.basename(tempfile.mkstemp(suffix='.jpg')[1]))
+        tempfile.tempdir = os.path.join(base.MEDIA_ROOT, 'clients/logos')
+        tf = tempfile.NamedTemporaryFile(delete=False, suffix='.jpg')
+        tf.close()
+        self.logo = tf.name
         Client.objects.create(
             name='Coca-Cola',
             logo=self.logo,
             website='http://us.coca-cola.com/home/'
         )
 
-    def test_client_name(self):
+    def test_can_create_client(self):
         client = Client.objects.get(name='Coca-Cola')
-        expected = 'Coca-cola'
+        expected = 'Coca-Cola'
         self.assertEqual(client.name, expected)
 
     def tearDown(self):

@@ -6,6 +6,7 @@ from homepage.views import HomePageView
 from headlines.models import Headline
 from clients.models import Client
 from staff.models import Employee
+from projects.models import Project
 
 
 class HomePageTest(TestCase):

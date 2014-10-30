@@ -10,10 +10,10 @@ class HeadlineTest(TestCase):
             headline='Makers, Bakers, Screenprinters, Homebrewers'
         )
 
-    def test_headline_returns_headline(self):
+    def test_can_create_headline(self):
         """ Test if calling the headline object returns a headline """
         headline = Headline.objects.get(
-            name='Makers, Bakers, Screenprinters, Homebrewers'
+            headline='Makers, Bakers, Screenprinters, Homebrewers'
         )
         expected = 'Makers, Bakers, Screenprinters, Homebrewers'
         self.assertEqual(headline.headline, expected)

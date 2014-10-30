@@ -8,9 +8,12 @@ from staff.models import Employee
 class StaffTest(TestCase):
 
     def setUp(self):
-        self.path = os.path.join(base.MEDIA_ROOT, 'staff/mugshots')
-        self.mugshot = os.path.join(
-            self.path, os.path.basename(tempfile.mkstemp(suffix='.jpg')[1]))
+        tempfile.tempdir = os.path.join(
+            base.MEDIA_ROOT, 'staff/mugshots'
+        )
+        tf = tempfile.NamedTemporaryFile(delete=False, suffix='.jpg')
+        tf.close()
+        self.mugshot = tf.name
         Employee.objects.create(
             first_name='Patrick',
             middle_name='Scott',
@@ -21,15 +24,15 @@ class StaffTest(TestCase):
             is_employed=True
         )
 
-    def test_employee_name(self):
+    def test_can_create_employee(self):
         employee = Employee.objects.get(first_name='Patrick')
         expected = 'Patrick'
-        self.assertEqual(employee.name, expected)
+        self.assertEqual(employee.first_name, expected)
 
     def test_employee_public_display(self):
-        employee = Employee.objects.get(first_name='Patrick').count()
-        expected = Employee.public.count()
-        self.assertEqual(employee, expected)
+        observed = Employee.objects.get(first_name='Patrick')
+        expected = Employee.public.get(first_name='Patrick')
+        self.assertEqual(observed, expected)
 
     def tearDown(self):
         os.remove(self.mugshot)

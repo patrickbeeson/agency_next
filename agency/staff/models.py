@@ -52,16 +52,6 @@ class Employee(models.Model):
     class Meta:
         ordering = ['last_name']
 
-    def _get_full_name(self):
-        """Returns the employee's full name"""
-        if self.middle_name:
-            full_name = '{} {}. {}'.format(
-                self.first_name, self.middle_name[0], self.last_name
-            )
-        else:
-            full_name = '{} {}'.format(self.first_name, self.last_name)
-    return property(_get_full_name)
-
     def __str__(self):
         if self.middle_name:
             full_name = '{} {}. {}'.format(

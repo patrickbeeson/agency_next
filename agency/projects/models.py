@@ -1,5 +1,7 @@
 from sorl.thumbnail import ImageField
 from model_utils.managers import QueryManager
+from model_utils.fields import StatusField
+from model_utils import Choices
 from ordered_model.models import OrderedModel
 
 from django.db import models
@@ -37,6 +39,7 @@ class Project(OrderedModel):
     """
     A project completed by the agency.
     """
+    STATUS = Choices('draft', 'published')
     name = models.CharField(
         max_length=200,
         help_text='Limited to 200 characters.',
@@ -69,9 +72,11 @@ class Project(OrderedModel):
         help_text='Check this box to feature this project on the homepage \
             and project list page.',
     )
+    status = StatusField(default='draft')
 
     objects = models.Manager()
     featured = QueryManager(is_featured=True)
+    published = QueryManager(status='published')
 
     class Meta(OrderedModel.Meta):
         pass
