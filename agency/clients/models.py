@@ -1,3 +1,4 @@
+from agency.utils.validators import validate_file_type
 from django.db import models
 from sorl.thumbnail import ImageField
 
@@ -12,10 +13,11 @@ class Client(models.Model):
         default=''
     )
     logo = ImageField(
-        help_text='Please use JPG (JPEG) or PNG files only. Will be resized \
+        help_text='Please use jpg (jpeg) or png files only. Will be resized \
             for public display.',
         upload_to='clients/logos',
-        default=''
+        default='',
+        validators=[validate_file_type]
     )
     website = models.URLField(
         blank=True,
