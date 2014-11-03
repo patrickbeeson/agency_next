@@ -2,6 +2,17 @@ from random import randint
 from django.db import models
 
 
+class RandomHeadlineManager(models.Manager):
+    """
+    Get a random headline for homepage display.
+    """
+    def get_queryset(self):
+        count = Headline.objects.all().count()
+        rand_id = randint(1, count)
+        return super(
+            RandomHeadlineManager, self).get_queryset().filter(id=rand_id)[0]
+
+
 class Headline(models.Model):
     """
     A headline to be displayed on the homepage.
@@ -13,17 +24,10 @@ class Headline(models.Model):
     )
 
     objects = models.Manager()
+    random_headline = RandomHeadlineManager()
 
     class Meta:
         ordering = ['pk']
-
-    def get_random_headline(self):
-        """
-        Get a random headline for homepage display.
-        """
-        count = self.objects.all().count()
-        rand_id = randint(1, count)
-        return self.objects.filter(id=rand_id)[1]
 
     def __str__(self):
         return self.headline
