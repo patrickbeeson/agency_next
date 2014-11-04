@@ -1,4 +1,5 @@
 from django.db import models
+from agency.utils.validators import validate_file_type
 from sorl.thumbnail import ImageField
 from model_utils.managers import QueryManager
 
@@ -37,9 +38,10 @@ class Employee(models.Model):
     )
     mugshot = ImageField(
         upload_to='staff/mugshots',
-        help_text='Please use JPG (JPEG) or PNG files only. Will be resized \
+        help_text='Please use jpg (jpeg) or png files only. Will be resized \
             for public display.',
-        default=''
+        default='',
+        validators=[validate_file_type]
     )
     is_employed = models.BooleanField(
         default=True,
