@@ -16,5 +16,5 @@ class HomePageView(TemplateView):
         context['headline'] = Headline.random_headline.all()
         context['client_list'] = Client.objects.all()
         context['employee_list'] = Employee.public.all()
-        context['project_list'] = Project.featured.all()
+        context['project_list'] = Project.featured.all()[:10]
         return context
