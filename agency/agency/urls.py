@@ -8,8 +8,6 @@ admin.site.site_header = 'The Variable administration'
 urlpatterns = patterns(
     '',
     url(r'^$', 'homepage.views.HomePageView', name='home'),
-    # url(r'^$', 'agency.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^administration/doc/', include('django.contrib.admindocs.urls')),
     url(r'^administration/', include(admin.site.urls)),
 )

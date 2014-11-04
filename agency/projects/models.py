@@ -5,6 +5,7 @@ from model_utils import Choices
 from ordered_model.models import OrderedModel
 from agency.utils.validators import validate_file_type
 
+from django.db.models import Q
 from django.db import models
 
 
@@ -77,8 +78,8 @@ class Project(OrderedModel):
     status = StatusField(default='draft')
 
     objects = models.Manager()
-    featured = QueryManager(is_featured=True)
     published = QueryManager(status='published')
+    featured = QueryManager(Q(is_featured=True) & Q(status='published'))
 
     class Meta(OrderedModel.Meta):
         pass

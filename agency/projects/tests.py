@@ -23,14 +23,16 @@ class ProjectTest(TestCase):
             slug='lowes-foods',
             description='Lowes Foods is a local grocery store chain.',
             hero_image=self.hero_image,
-            is_featured=True
+            is_featured=True,
+            status='published'
         )
         Project.objects.create(
             name='Primo Water',
             slug='primo-water',
             description='Primo Water is a water wholeseller.',
             hero_image=self.hero_image_invalid,
-            is_featured=False
+            is_featured=False,
+            status='published'
         )
         Category.objects.create(
             name='Digital',
@@ -52,10 +54,17 @@ class ProjectTest(TestCase):
         project = Project.objects.get(slug='primo-water')
         self.assertRaises(ValidationError, project.full_clean)
 
-    def test_project_not_featured_display(self):
-        observed = Project.objects.all().filter(is_featured=False).count()
-        expected = Project.featured.all().count()
-        self.assertEqual(expected, observed, "Only one project is featured.")
+    def test_project_not_published_display(self):
+        expected = Project.objects.all().count()
+        observed = Project.published.all().count()
+        self.assertEqual(expected, observed, "Two projects are published.")
+
+    def test_project_featured_and_public(self):
+        expected = 1
+        observed = Project.featured.all().count()
+        self.assertEqual(
+            expected, observed, "Project that is featured is also public."
+        )
 
     def tearDown(self):
         os.remove(self.hero_image)
