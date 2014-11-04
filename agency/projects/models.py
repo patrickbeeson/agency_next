@@ -3,6 +3,7 @@ from model_utils.managers import QueryManager
 from model_utils.fields import StatusField
 from model_utils import Choices
 from ordered_model.models import OrderedModel
+from agency.utils.validators import validate_file_type
 
 from django.db import models
 
@@ -49,7 +50,7 @@ class Project(OrderedModel):
         help_text='Used to build the project URL. \
             Will populate from the name field.',
         default='',
-        unique_for_month=True
+        unique=True
     )
     description = models.TextField(
         default=''
@@ -64,8 +65,9 @@ class Project(OrderedModel):
     hero_image = ImageField(
         upload_to='projects/hero_images',
         default='',
-        help_text='Please use JPG (JPEG) or PNG files only. Will be resized \
+        help_text='Please use jpg (jpeg) or png files only. Will be resized \
             for public display.',
+        validators=[validate_file_type]
     )
     is_featured = models.BooleanField(
         default=False,
