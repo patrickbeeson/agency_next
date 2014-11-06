@@ -215,7 +215,8 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 INSTALLED_APPS += (
     'sorl.thumbnail',
     'contact_form',
-    'ordered_model'
+    'ordered_model',
+    'embed_video'
 )
 
 THUMBNAIL_DEBUG = False
