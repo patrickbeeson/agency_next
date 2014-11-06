@@ -79,6 +79,7 @@ class Project(OrderedModel):
             and project list page.',
     )
     status = StatusField(default='draft')
+    assets = models.ManyToManyField('AssetGroup', through='Asset')
 
     objects = models.Manager()
     published = QueryManager(status='published')
@@ -108,17 +109,12 @@ class AssetGroup(OrderedModel):
         default=LAYOUT.centered,
         max_length=8
     )
-    assets = models.ManyToManyField(
-        Project,
-        through='Asset',
-        through_fields=('assetgroup', 'project')
-    )
 
     class Meta(OrderedModel.Meta):
         pass
 
     def __str__(self):
-        return self.id
+        return self.layout
 
 
 class Asset(models.Model):
@@ -161,6 +157,7 @@ class Asset(models.Model):
     )
     layout = models.CharField(
         max_length=12,
+        choices=LAYOUT,
         help_text='Determines the layout option for an asset.',
         default='One of one'
     )
