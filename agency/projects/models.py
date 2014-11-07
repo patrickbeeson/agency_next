@@ -8,8 +8,8 @@ from embed_video.fields import EmbedVideoField
 
 from django.db.models import Q
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
+from django.template.loader import render_to_string
 
 
 class Category(models.Model):
@@ -79,7 +79,6 @@ class Project(OrderedModel):
             and project list page.',
     )
     status = StatusField(default='draft')
-    assets = models.ManyToManyField('AssetGroup', through='Asset')
 
     objects = models.Manager()
     published = QueryManager(status='published')
@@ -97,83 +96,70 @@ class Project(OrderedModel):
 
 class AssetGroup(OrderedModel):
     """
-    A container for organizing project assets for ordering and display.
+    A container for organizing individual assets for a project.
     """
-    LAYOUT = Choices(
-        ('full', _('full')),
-        ('centered', _('centered')),
-        ('narrow', _('narrow'))
+    name = models.CharField(
+        max_length=200,
+        help_text='Limited to 200 characters.',
     )
-    layout = models.CharField(
-        choices=LAYOUT,
-        default=LAYOUT.centered,
-        max_length=8
+    has_background = models.BooleanField(
+        default=False,
+        help_text='Set to True if a background is needed for display purposes.'
     )
+    project = models.ForeignKey(Project)
 
     class Meta(OrderedModel.Meta):
         pass
 
     def __str__(self):
-        return self.layout
+        return self.name
+
+    def as_html(self):
+        template_name = ('projects/{}_assetgroup.html'.format((self.name).lower()))
+        return render_to_string(template_name, {'obj': self})
 
 
-class Asset(models.Model):
+class GenericAsset(models.Model):
     """
-    A content object for a particular project.
+    A content asset.
     """
-    POSITION = Choices(
-        ('Pull', _('Pull')),
-        ('Push', _('Push'))
-    )
-    LAYOUT = Choices(
-        ('One of one', _('One of one')),
-        ('One of two', _('One of two')),
-        ('One of three', _('One of three')),
-        ('Two of three', _('Two of three'))
-    )
     name = models.CharField(
         max_length=200,
         help_text='Limited to 200 characters.'
     )
-    body = models.TextField(
-        help_text='Optional. An asset as text.',
-        blank=True,
-        default=''
-    )
-    image = ImageField(
-        help_text='Optional. An asset as an image. Please use jpg (jpeg) or \
-            png files only. Will be resized for public display.',
-        upload_to='projects/assets/images',
-        default='',
-        validators=[validate_file_type],
-        blank=True,
-        null=True
-    )
-    video = EmbedVideoField(
-        help_text='Optional. An asset as video. Copy and paste the video \
-            URL into this field.',
-        blank=True,
-        null=True
-    )
-    layout = models.CharField(
-        max_length=12,
-        choices=LAYOUT,
-        help_text='Determines the layout option for an asset.',
-        default='One of one'
-    )
-    position = models.CharField(
-        help_text='Aligns the asset to the left (pull) or right (push).',
-        max_length=4,
-        choices=POSITION,
-        default='',
-        null=True,
-        blank=True
-    )
     group = models.ForeignKey(AssetGroup)
-    project = models.ForeignKey(Project)
 
     class Meta:
-        ordering = ['name']
+        abstract = True
 
-    def __str__(self):
-        return self.name
+
+class ImageAsset(GenericAsset):
+    """
+    A content asset as an image.
+    """
+    image = ImageField(
+        help_text='Please use jpg (jpeg) or png files only.',
+        upload_to='projects/assets/images',
+        default='',
+        validators=[validate_file_type]
+    )
+
+
+class TextAsset(GenericAsset):
+    """
+    A content asset as text.
+    """
+    text = models.TextField(
+        help_text='Plain text only.',
+        default=''
+    )
+
+
+class VideoAsset(GenericAsset):
+    """
+    A content asset as video.
+    """
+    video = EmbedVideoField(
+        help_text='Copy and paste the video URL into this field.',
+        default=''
+    )
