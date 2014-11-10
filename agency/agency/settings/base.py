@@ -216,7 +216,8 @@ INSTALLED_APPS += (
     'sorl.thumbnail',
     'contact_form',
     'ordered_model',
-    'embed_video'
+    'embed_video',
+    'nested_inline'
 )
 
 THUMBNAIL_DEBUG = False

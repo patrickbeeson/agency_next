@@ -10,6 +10,7 @@ from django.db.models import Q
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
 
 
 class Category(models.Model):
@@ -44,7 +45,10 @@ class Project(OrderedModel):
     """
     A project completed by the agency.
     """
-    STATUS = Choices('draft', 'published')
+    STATUS = Choices(
+        ('draft', _('Draft')),
+        ('published', _('Published'))
+    )
     name = models.CharField(
         max_length=200,
         help_text='Limited to 200 characters.',
@@ -98,13 +102,32 @@ class AssetGroup(OrderedModel):
     """
     A container for organizing individual assets for a project.
     """
+    TYPE = Choices(
+        ('fullbleed', _('Full bleed')),
+        ('centered', _('Centered')),
+        ('centerednarrow', _('Centered Narrow')),
+        ('5050', _('50/50')),
+        ('6030', _('60/30')),
+        ('3060', _('30/60'))
+    )
+    asset_group_type = models.CharField(
+        help_text='Default is centered. Choice impacts display of group.',
+        choices=TYPE,
+        max_length=15,
+        default=TYPE.centered
+    )
     name = models.CharField(
         max_length=200,
-        help_text='Limited to 200 characters.',
+        help_text='Limited to 200 characters.'
     )
-    has_background = models.BooleanField(
+    description = models.TextField(
+        blank=True,
+        help_text='Optional. Plain text only.'
+    )
+    has_emphasis = models.BooleanField(
         default=False,
-        help_text='Set to True if a background is needed for display purposes.'
+        help_text='Set to True if this asset group needs visual emphasis for \
+            display purposes.'
     )
     project = models.ForeignKey(Project)
 
@@ -112,54 +135,60 @@ class AssetGroup(OrderedModel):
         pass
 
     def __str__(self):
-        return self.name
+        return '{} / {}'.format(self.name, self.asset_group_type)
 
     def as_html(self):
-        template_name = ('projects/{}_assetgroup.html'.format((self.name).lower()))
+        """ Determines what template is used for the AssetGroup. """
+        if self.asset_group_type:
+            template_name = (
+                'projects/{}_assetgroup.html'.format(
+                    (self.asset_group_type).lower()
+                )
+            )
+        else:
+            template_name = ('projects/base_assetgroup.html')
         return render_to_string(template_name, {'obj': self})
 
 
-class GenericAsset(models.Model):
+class Asset(models.Model):
     """
-    A content asset.
+    A content asset for a project.
     """
+    TYPE = Choices(
+        'Image',
+        'Text',
+        'Video'
+    )
+    asset_type = models.CharField(
+        choices=TYPE,
+        default=TYPE.Image,
+        max_length=5
+    )
     name = models.CharField(
         max_length=200,
         help_text='Limited to 200 characters.'
     )
+    text = models.TextField(
+        help_text='Optional. Plain text only.',
+        default='',
+        blank=True
+    )
+    image = ImageField(
+        help_text='Optional. Please use jpg (jpeg) or png files only.',
+        upload_to='projects/assets/images',
+        default='',
+        validators=[validate_file_type],
+        blank=True
+    )
+    video = EmbedVideoField(
+        help_text='Optional. Copy and paste the video URL into this field.',
+        default='',
+        blank=True
+    )
     group = models.ForeignKey(AssetGroup)
 
     class Meta:
-        abstract = True
+        ordering = ['name']
 
-
-class ImageAsset(GenericAsset):
-    """
-    A content asset as an image.
-    """
-    image = ImageField(
-        help_text='Please use jpg (jpeg) or png files only.',
-        upload_to='projects/assets/images',
-        default='',
-        validators=[validate_file_type]
-    )
-
-
-class TextAsset(GenericAsset):
-    """
-    A content asset as text.
-    """
-    text = models.TextField(
-        help_text='Plain text only.',
-        default=''
-    )
-
-
-class VideoAsset(GenericAsset):
-    """
-    A content asset as video.
-    """
-    video = EmbedVideoField(
-        help_text='Copy and paste the video URL into this field.',
-        default=''
-    )
+    def __str__(self):
+        return '{} / {}'.format(self.name, self.asset_type)

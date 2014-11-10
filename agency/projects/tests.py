@@ -3,7 +3,7 @@ from django.test import TestCase
 import tempfile
 import os
 from settings import base
-from projects.models import Category, Project
+from projects.models import Category, Project, AssetGroup, Asset
 
 
 class ProjectTest(TestCase):
@@ -16,9 +16,10 @@ class ProjectTest(TestCase):
         tf_invalid = tempfile.NamedTemporaryFile(delete=False, suffix='.gif')
         tf_invalid.close()
         tf.close()
+        self.asset_image = tf.name
         self.hero_image = tf.name
         self.hero_image_invalid = tf_invalid.name
-        Project.objects.create(
+        self.valid_project = Project.objects.create(
             name='Lowes Foods',
             slug='lowes-foods',
             description='Lowes Foods is a local grocery store chain.',
@@ -26,7 +27,7 @@ class ProjectTest(TestCase):
             is_featured=True,
             status='published'
         )
-        Project.objects.create(
+        self.invalid_project = Project.objects.create(
             name='Primo Water',
             slug='primo-water',
             description='Primo Water is a water wholeseller.',
@@ -34,10 +35,22 @@ class ProjectTest(TestCase):
             is_featured=False,
             status='published'
         )
-        Category.objects.create(
+        self.category = Category.objects.create(
             name='Digital',
             slug='digital',
             description='Digital projects.'
+        )
+        self.assetgroup = AssetGroup.objects.create(
+            name='Lowes Foods digital',
+            asset_group_type='centered',
+            description='Digital screenshots for Lowes Foods redesign.',
+            project=self.valid_project,
+            has_emphasis=True
+        )
+        self.asset = Asset.objects.create(
+            name='Screenshot',
+            image=self.asset_image,
+            group=self.assetgroup
         )
 
     def test_can_create_project(self):
@@ -49,6 +62,11 @@ class ProjectTest(TestCase):
         category = Category.objects.get(slug='digital')
         expected = 'digital'
         self.assertEqual(category.slug, expected)
+
+    def test_can_create_assetgroup(self):
+        assetgroup = AssetGroup.objects.get(name='Lowes Foods digital')
+        expected = 'Lowes Foods digital'
+        self.assertEqual(assetgroup.name, expected)
 
     def test_invalid_file_type(self):
         project = Project.objects.get(slug='primo-water')
@@ -67,6 +85,7 @@ class ProjectTest(TestCase):
         )
 
     def tearDown(self):
+        os.remove(self.asset_image)
         os.remove(self.hero_image)
         os.remove(self.hero_image_invalid)
         projects = Project.objects.all()
