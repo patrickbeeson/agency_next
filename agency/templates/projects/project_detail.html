@@ -1,0 +1,28 @@
+<DOCTYPE>
+<html>
+<head>
+</head>
+<body>
+{{ project.name }}
+
+{{ self.slug }}
+
+{% for group in assetgroup_list %}
+
+{{group.get_image_assets}}
+
+{% for asset in group.asset_set.all %}
+    {% if asset.asset_type 'Image' %}
+    {{asset.name}}
+    {% endif %}
+{% endfor %}
+{% endfor %}
+
+<ul>
+{% for project in project_list %}
+    <li>{{ project.name }}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

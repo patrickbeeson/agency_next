@@ -137,6 +137,15 @@ class AssetGroup(OrderedModel):
     def __str__(self):
         return '{} / {}'.format(self.name, self.asset_group_type)
 
+    def get_image_assets(self):
+        return self.asset_set.filter(asset_type='Image').select_related('group')
+
+    def get_text_assets(self):
+        return self.asset_set.filter(asset_type='Text').select_related('group')
+
+    def get_video_assets(self):
+        return self.asset_set.filter(asset_type='Video').select_related('group')
+
     def as_html(self):
         """ Determines what template is used for the AssetGroup. """
         if self.asset_group_type:

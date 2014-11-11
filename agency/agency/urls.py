@@ -5,10 +5,12 @@ from django.conf.urls.static import static
 
 admin.site.site_header = 'The Variable administration'
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', 'homepage.views.HomePageView', name='home'),
     url(r'^administration/doc/', include('django.contrib.admindocs.urls')),
     url(r'^administration/', include(admin.site.urls)),
+    url(r'^', include('projects.urls')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
