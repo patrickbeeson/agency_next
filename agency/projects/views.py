@@ -11,7 +11,8 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         """
-        Display a list of 10 featured projects.
+        Puts into context a list of 10 other projects and the
+        asset group for the project in question.
         """
         context = super(ProjectDetailView, self).get_context_data(**kwargs)
         context['project_list'] = Project.featured.exclude(

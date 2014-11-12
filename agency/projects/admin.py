@@ -4,24 +4,13 @@ from embed_video.admin import AdminVideoMixin
 from ordered_model.admin import OrderedModelAdmin
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
-from projects.models import Project, Category, AssetGroup, Asset
+from projects.models import Project, Category, AssetGroup, ImageAsset, \
+    TextAsset, VideoAsset
 
 
-class AssetInline(AdminVideoMixin, AdminImageMixin, NestedStackedInline):
-    model = Asset
-    extra = 2
-
-
-class AssetGroupInline(NestedStackedInline):
-    model = AssetGroup
-    extra = 5
-    inlines = [AssetInline]
-
-
-class AssetAdmin(admin.ModelAdmin):
-    list_display = ('name', 'asset_type', 'group', 'project')
+class CommonAssetAdmin(admin.ModelAdmin):
+    list_display = ('name', 'group', 'project')
     readonly_fields = ('project',)
-    list_filter = ('asset_type',)
 
     def project(self, obj):
         project = Project.objects.filter(
@@ -31,10 +20,49 @@ class AssetAdmin(admin.ModelAdmin):
     project.short_description = 'Project'
 
 
+class ImageAssetAdmin(CommonAssetAdmin):
+    pass
+
+
+class TextAssetAdmin(CommonAssetAdmin):
+    pass
+
+
+class VideoAssetAdmin(CommonAssetAdmin):
+    pass
+
+
+class ImageAssetInline(AdminImageMixin, NestedStackedInline):
+    model = ImageAsset
+    extra = 2
+
+
+class TextAssetInline(NestedStackedInline):
+    model = TextAsset
+    extra = 1
+
+
+class VideoAssetInline(AdminVideoMixin, NestedStackedInline):
+    model = VideoAsset
+    extra = 1
+
+
+class AssetGroupInline(NestedStackedInline):
+    model = AssetGroup
+    extra = 5
+    inlines = [ImageAssetInline, TextAssetInline, VideoAssetInline]
+
+
 class AssetGroupAdmin(OrderedModelAdmin, admin.ModelAdmin):
-    list_display = ('name', 'asset_group_type', 'project', 'order', 'move_up_down_links')
+    list_display = (
+        'name',
+        'asset_group_type',
+        'project',
+        'order',
+        'move_up_down_links'
+    )
     list_filter = ('project', 'asset_group_type')
-    inlines = [AssetInline]
+    inlines = [ImageAssetInline, TextAssetInline, VideoAssetInline]
 
 
 class ProjectAdmin(OrderedModelAdmin, AdminImageMixin, NestedModelAdmin):
@@ -52,4 +80,6 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(AssetGroup, AssetGroupAdmin)
-admin.site.register(Asset, AssetAdmin)
+admin.site.register(ImageAsset, ImageAssetAdmin)
+admin.site.register(VideoAsset, VideoAssetAdmin)
+admin.site.register(TextAsset, TextAssetAdmin)

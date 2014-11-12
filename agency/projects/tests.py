@@ -3,7 +3,8 @@ from django.test import TestCase
 import tempfile
 import os
 from settings import base
-from projects.models import Category, Project, AssetGroup, Asset
+from projects.models import Category, Project, AssetGroup, ImageAsset,\
+    TextAsset, VideoAsset
 
 
 class ProjectTest(TestCase):
@@ -47,9 +48,25 @@ class ProjectTest(TestCase):
             project=self.valid_project,
             has_emphasis=True
         )
-        self.asset = Asset.objects.create(
+        self.image_asset = ImageAsset.objects.create(
             name='Screenshot',
+            description='Screenshot description.',
             image=self.asset_image,
+            caption='Screenshot caption.',
+            group=self.assetgroup
+        )
+        self.text_asset = TextAsset.objects.create(
+            name='Blurb',
+            description='Blurb description.',
+            title='Blurb title',
+            text='Blurb copy.',
+            group=self.assetgroup
+        )
+        self.video_asset = VideoAsset.objects.create(
+            name='Video',
+            description='Video description.',
+            video='http://vimeo.com/39043244',
+            caption='Video caption.',
             group=self.assetgroup
         )
 

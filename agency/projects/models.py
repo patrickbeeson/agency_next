@@ -137,17 +137,8 @@ class AssetGroup(OrderedModel):
     def __str__(self):
         return '{} / {}'.format(self.name, self.asset_group_type)
 
-    def get_image_assets(self):
-        return self.asset_set.filter(asset_type='Image').select_related('group')
-
-    def get_text_assets(self):
-        return self.asset_set.filter(asset_type='Text').select_related('group')
-
-    def get_video_assets(self):
-        return self.asset_set.filter(asset_type='Video').select_related('group')
-
     def as_html(self):
-        """ Determines what template is used for the AssetGroup. """
+        """ Method to allow asset groups to use a specific template. """
         if self.asset_group_type:
             template_name = (
                 'projects/{}_assetgroup.html'.format(
@@ -159,45 +150,79 @@ class AssetGroup(OrderedModel):
         return render_to_string(template_name, {'obj': self})
 
 
-class Asset(models.Model):
+class CommonAsset(models.Model):
     """
-    A content asset for a project.
+    Base model used across assets for a project.
     """
-    TYPE = Choices(
-        'Image',
-        'Text',
-        'Video'
-    )
-    asset_type = models.CharField(
-        choices=TYPE,
-        default=TYPE.Image,
-        max_length=5
-    )
     name = models.CharField(
         max_length=200,
         help_text='Limited to 200 characters.'
     )
-    text = models.TextField(
+    description = models.TextField(
         help_text='Optional. Plain text only.',
-        default='',
-        blank=True
-    )
-    image = ImageField(
-        help_text='Optional. Please use jpg (jpeg) or png files only.',
-        upload_to='projects/assets/images',
-        default='',
-        validators=[validate_file_type],
-        blank=True
-    )
-    video = EmbedVideoField(
-        help_text='Optional. Copy and paste the video URL into this field.',
         default='',
         blank=True
     )
     group = models.ForeignKey(AssetGroup)
 
     class Meta:
-        ordering = ['name']
+        abstract = True
+
+
+class ImageAsset(CommonAsset):
+    """
+    An image asset for a project.
+    """
+    image = ImageField(
+        help_text='Please use jpg (jpeg) or png files only.',
+        upload_to='projects/assets/images',
+        default='',
+        validators=[validate_file_type]
+    )
+    caption = models.TextField(
+        help_text='Optional. Plain text only.',
+        default='',
+        blank=True
+    )
 
     def __str__(self):
-        return '{} / {}'.format(self.name, self.asset_type)
+        return '{} / image'.format(self.name)
+
+
+class TextAsset(CommonAsset):
+    """
+    A text asset for a project.
+    """
+    title = models.CharField(
+        help_text='Optional. Limited to 200 characters.',
+        default='',
+        blank=True,
+        max_length=200
+    )
+    text = models.TextField(
+        help_text='Optional. Plain text only.',
+        default='',
+        blank=True
+    )
+
+    def __str__(self):
+        return '{} / text'.format(self.name)
+
+
+class VideoAsset(CommonAsset):
+    """
+    A video asset for a project.
+    """
+    video = EmbedVideoField(
+        help_text='Optional. Copy and paste the video URL into this field.',
+        default='',
+        blank=True
+    )
+    caption = models.TextField(
+        help_text='Optional. Plain text only.',
+        default='',
+        blank=True
+    )
+
+    def __str__(self):
+        return '{} / video'.format(self.name)

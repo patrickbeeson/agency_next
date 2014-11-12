@@ -9,13 +9,7 @@
 
 {% for group in assetgroup_list %}
 
-{{group.get_image_assets}}
-
-{% for asset in group.asset_set.all %}
-    {% if asset.asset_type 'Image' %}
-    {{asset.name}}
-    {% endif %}
-{% endfor %}
+{{ group.as_html }}
 {% endfor %}
 
 <ul>
