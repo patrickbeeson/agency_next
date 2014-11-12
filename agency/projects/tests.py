@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
+from django.test import RequestFactory
 import tempfile
 import os
 from settings import base
