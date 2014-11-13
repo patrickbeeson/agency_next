@@ -1,6 +1,8 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<div class="container">
+    <h1>The Variable</h1>
     {% for headline in headline_list %}
         {{ headline.headline }}
         {{ headline.pk }}
@@ -11,4 +13,5 @@
         {{ client.logo }}
         {{ client.website }}
     {% endfor %}
+</div><!-- /.container -->
 {% endblock content %}
