@@ -1,9 +1,7 @@
 {% if obj.videoasset_set.count %}
 {% load embed_video_tags %}
     {% for videoasset in obj.videoasset_list.all %}
-        {% video item.video as my_video %}
-        <div class="panel-video--full" style="background-image: url({{ MEDIA_URL }}{{ my_video.thumbnail }})">
-            {% video my_video 'large' %}
+        <div class="panel-video--full" data-video-id="{{ videoasset.get_video_id }}" style="background-image: url({{ videoasset.get_video_thumbnail_url }})">
         </div> <!-- /.panel-media--full -->
     {% endfor %}
 {% elif ob.imageasset_set.count == 1 %}

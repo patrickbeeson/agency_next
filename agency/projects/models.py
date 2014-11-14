@@ -5,6 +5,7 @@ from model_utils import Choices
 from ordered_model.models import OrderedModel
 from agency.utils.validators import validate_file_type
 from embed_video.fields import EmbedVideoField
+from embed_video.backends import detect_backend
 
 from django.db.models import Q
 from django.db import models
@@ -223,6 +224,25 @@ class VideoAsset(CommonAsset):
         default='',
         blank=True
     )
+
+    def get_video_id(self):
+        """
+        Get the video id for video referenced.
+        """
+        video = detect_backend(self.video)
+        video_id = video.get_code()
+        return video_id
+
+    def get_video_thumbnail_url(self):
+        """
+        Get the thumbnail for the video at size 1700 x 750 in jpg format.
+        """
+        video = detect_backend(self.video)
+        orig_thumbnail_url = video.get_thumbnail_url().split('_')
+        new_thumbnail_url = (
+            '{}_{}'.format(orig_thumbnail_url, '1700x750.jpg')
+        )
+        return new_thumbnail_url
 
     def __str__(self):
         return '{} / video'.format(self.name)
