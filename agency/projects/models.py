@@ -235,12 +235,12 @@ class VideoAsset(CommonAsset):
 
     def get_video_thumbnail_url(self):
         """
-        Get the thumbnail for the video at size 1700 x 750 in jpg format.
+        Get the thumbnail for the video at size 3400 x 1500 in jpg format.
         """
         video = detect_backend(self.video)
         orig_thumbnail_url = video.get_thumbnail_url().split('_')
         new_thumbnail_url = (
-            '{}_{}'.format(orig_thumbnail_url, '1700x750.jpg')
+            '{}_{}'.format(orig_thumbnail_url, '3400x1500.jpg')
         )
         return new_thumbnail_url
 
