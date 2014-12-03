@@ -1,0 +1,80 @@
+// --------------------------------------------------
+//
+//   LAYOUT
+//
+// --------------------------------------------------
+
+
+
+
+
+// --------------------------------------------------
+//   GRID
+// --------------------------------------------------
+
+// ----- Grid Variables ----- //
+col-gutter       = 30px
+
+.container
+  margin 0 30px
+  max-width 980px
+  @media (min-width: 65em)
+    margin 0 auto
+
+.row
+  @extends .group
+
+.col
+  padding-left (col-gutter)
+  padding-right (col-gutter)
+  + .col
+    margin-top col-gutter
+  @media (min-width: 43.75em)
+    padding-left (col-gutter/2)
+    padding-right (col-gutter/2)
+    float left
+    position relative // In order to push/pull classes to take effect
+    + .col
+      margin-top 0
+
+@media (min-width: 43.75em)
+  .col--1of1
+    width 100%
+  .col--1of2
+    width 50%
+  .col--1of3
+    width 33.333%
+  .col--2of3
+    width 66.663%
+  .col--1of4
+    width 25%
+  .col--2of4
+    @extends .col--1of2
+  .col--3of4
+    width 75%
+
+  .push--1of2
+    left 50%
+  .push--1of3
+    left 66.666%
+  .push--2of3
+    left 33.333%
+  .push--1of4
+    left 75%
+  .push--2of4
+    @extends .push--1of2
+  .push--3of4
+    left 25%
+
+  .pull--1of2
+    right 50%
+  .pull--1of3
+    right 66.666%
+  .pull--2of3
+    right 33.333%
+  .pull--1of4
+    right 75%
+  .pull--2of4
+    @extends .pull--1of2
+  .pull--3of4
+    right 25%
