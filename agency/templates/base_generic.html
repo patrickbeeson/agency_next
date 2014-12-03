@@ -1,6 +1,6 @@
 <!doctype html>
 {% load staticfiles %}
-{% load compressor %}
+{% load compress %}
 <html lang="en" class="no-js">
     <head>
         <title>{% block title %}The Variable{% endblock %}</title>
@@ -14,10 +14,27 @@
 
     <!-- CSS
     ================================================== -->
-    {% compress css %}
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:400,400italic|Open+Sans:300,400">
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/slick.css' %}">
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_core/rupture.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_core/settings.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_core/base.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_core/mixins.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_core/typography.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_core/tables.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_core/forms.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_core/buttons.styl' %}">
+
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_components/layout.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_components/navigation.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_components/mast.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_components/hero.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_components/footer.styl' %}">
+
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_templates/home.styl' %}">
+    <link type="text/stylus" rel="stylesheet" href="{% static 'css/stylus/_templates/projects.styl' %}">
     {% endcompress %}
     {% block app_specific_css %}{% endblock app_specific_css %}
 

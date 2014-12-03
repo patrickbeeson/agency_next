@@ -13,7 +13,7 @@
 // --------------------------------------------------
 
 // ----- Grid Variables ----- //
-col-gutter       = 30px
+col-gutter = 30px
 
 .container
   margin 0 30px
@@ -22,7 +22,10 @@ col-gutter       = 30px
     margin 0 auto
 
 .row
-  @extends .group
+  &:after
+    content: ""
+    display: table
+    clear: both
 
 .col
   padding-left (col-gutter)
@@ -30,8 +33,8 @@ col-gutter       = 30px
   + .col
     margin-top col-gutter
   @media (min-width: 43.75em)
-    padding-left (col-gutter/2)
-    padding-right (col-gutter/2)
+    padding-left (col-gutter / 2)
+    padding-right (col-gutter / 2)
     float left
     position relative // In order to push/pull classes to take effect
     + .col

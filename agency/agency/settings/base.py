@@ -109,7 +109,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
+    'compressor.finders.CompressorFinder',
 )
 ########## END STATIC FILE CONFIGURATION
 
@@ -209,7 +209,7 @@ LOCAL_APPS = (
     'headlines',
     'homepage',
     'staff',
-    'projects'
+    'projects',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -221,7 +221,7 @@ INSTALLED_APPS += (
     'ordered_model',
     'embed_video',
     'nested_inline',
-    "compressor"
+    'compressor',
 )
 
 THUMBNAIL_DEBUG = False

@@ -1,4 +1,4 @@
-from random import randint
+from random import choice
 from django.db import models
 
 
@@ -7,8 +7,10 @@ class RandomHeadlineManager(models.Manager):
     Get a random headline for homepage display.
     """
     def get_queryset(self):
-        count = Headline.objects.all().count()
-        rand_id = randint(1, count)
+        count = []
+        for headline in Headline.objects.all():
+            count.append(headline.id)
+        rand_id = choice(count)
         return super(
             RandomHeadlineManager, self).get_queryset().filter(id=rand_id)[0]
 

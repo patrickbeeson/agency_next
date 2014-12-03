@@ -1,5 +1,5 @@
 {% extends "base_generic.html" %}
-{% load static %}
+{% load staticfiles %}
 {% load thumbnail %}
 
 {% block content %}
@@ -39,7 +39,7 @@
     <section class="projects parallax">
         {% for project in project_list %}
         <div class="project">
-            <div class="project-bg" data-parallax="scroll" data-speed="0.5" data-position="top" data-natural-width="3400" data-natural-height="1500" data-image-src="{{ project.hero_image }}"></div> <!-- /.project-bg -->
+            <div class="project-bg" data-parallax="scroll" data-speed="0.5" data-position="top" data-natural-width="3400" data-natural-height="1500" data-image-src="{{ MEDIA_URL }}{{ project.hero_image }}"></div> <!-- /.project-bg -->
             <div class="project-content">
                 <h2 class="project-title">{{ project.name }}</h2>
                 <a class="project-button" href="{{ project.get_absolute_url }}">View Project</a>
