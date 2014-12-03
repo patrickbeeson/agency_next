@@ -1,8 +1,8 @@
 <!doctype html>
 {% load staticfiles %}
-<html lang="en">
-  <head>
-    <title>{% block title %}The Variable{% endblock %}</title>
+<html lang="en" class="no-js">
+    <head>
+        <title>{% block title %}The Variable{% endblock %}</title>
 
     <!-- META
     ================================================== -->
@@ -13,7 +13,8 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Vollkorn:400italic|Open+Sans:300,400|Montserrat:700'>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:400,400italic|Open+Sans:300,400">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     {% block app_specific_css %}{% endblock app_specific_css %}
 
@@ -27,7 +28,10 @@
 
     <!-- JS
     ================================================== -->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/modernizr.custom.min.js' %}"></script>
+    <script src="{% static 'js/parallax.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
     <script src="{% static 'js/app.js' %}"></script>
     {% block app_specific_js %}{% endblock app_specific_js %}
 
