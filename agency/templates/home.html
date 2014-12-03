@@ -1,17 +1,100 @@
 {% extends "base_generic.html" %}
+{% load static %}
+{% load thumbnail %}
 
 {% block content %}
-<div class="container">
-    <h1>The Variable</h1>
-    {% for headline in headline_list %}
-        {{ headline.headline }}
-        {{ headline.pk }}
-    {% endfor %}
+<div class="mast-wrapper">
+    <header class="mast container">
+        <a class="brand" href="/">
+            <img class="brand-symbol" src="{% static 'img/logo-symbol.svg' %}" alt="VA">
+            <img class="brand-full" src="{% static 'img/logo-full.svg' %}" alt="The Variable">
+        </a> <!-- /.brand -->
+        <a href="#" class="hamburger" id="js-hamburger">
+            <span class="bun bun--top"></span>
+            <span class="meat"></span>
+            <span class="bun bun--bottom"></span>
+        </a>
+    </header> <!-- /.mast container -->
+</div> <!-- /.mast-wrapper -->
 
-    {% for client in client_list %}
-        {{ client.name }}
-        {{ client.logo }}
-        {{ client.website }}
-    {% endfor %}
-</div><!-- /.container -->
+<div class="hero-wrapper">
+    <section class="hero container">
+        <div class="hero-blurbs">
+            <h1 class="hero-blurb">{{ headline }}</h1>
+            <div class="hero-blurb-badge">
+                <span>No. {{ headline.id }}</span>
+            </div> <!-- /.hero-blurb-badge -->
+        </div> <!-- /.hero-blurbs -->
+        <h2 class="hero-tagline">We are a reformed ad agency created by entrepreneurs, design geeks, makers, ethnographers, data wonks and big agency survivors. We are built to solve problems. And create opportunities.</h2>
+    </section> <!-- /.hero container -->
+</div> <!-- /.hero-wrapper -->
+
+<div class="secret-sauce-wrapper">
+    <section class="secret-sauce">
+        <a href="#">The Secret <em>Sauce</em></a>
+    </section> <!-- /.secret-sauce -->
+</div> <!-- /.secret-sauce-wrapper -->
+
+<div class="projects-wrapper">
+    <section class="projects parallax">
+        {% for project in project_list %}
+        <div class="project">
+            <div class="project-bg" data-parallax="scroll" data-speed="0.5" data-position="top" data-natural-width="3400" data-natural-height="1500" data-image-src="{{ project.hero_image }}"></div> <!-- /.project-bg -->
+            <div class="project-content">
+                <h2 class="project-title">{{ project.name }}</h2>
+                <a class="project-button" href="{{ project.get_absolute_url }}">View Project</a>
+            </div> <!-- /.project-content -->
+        </div> <!-- /.project -->
+        {% endfor %}
+    </section> <!-- /.projects parallax-->
+</div> <!-- /.projects-wrapper -->
+
+<div class="experience-wrapper">
+    <section class="experience container">
+        <h2 class="section-title">Our<br><em>Experience</em></h2>
+        <p class="section-blurb">As a wearer of many hats, we have played many different roles for some of our favorite brands; from data analysis to strategic development to creative execution. Most often, all of the above. But never less than game-changing.</p>
+        <div class="clients">
+            {% for client in client_list %}
+            <figure class="client">{% if client.website %}<a href="{{ client.website }}"><img src="{{ MEDIA_URL }}{{ client.logo }}" alt="{{ client.name }}"></a>{% else %}<img src="{{ MEDIA_URL }}{{ client.logo }}" alt="{{ client.name }}">{% endif %}</figure> <!-- /.client -->
+            {% endfor %}
+        </div> <!-- /.clients -->
+    </section> <!-- /.experience container -->
+</div> <!-- /.experience-wrapper -->
+
+<div class="people-wrapper">
+    <section class="people">
+        <h2 class="section-title">Our<br><em>People</em></h2>
+        <p class="section-blurb">We wear weird like a badge. Our goal is to get the most disparate, brilliant thinkers we can find and unleash their creativity on your brand. Here is who we are.</p>
+        <div class="staff-grid">
+            {% for employee in employee_list %}
+            <figure class="staff">
+                {% thumbnail employee.mugshot "800x800" as large_mugshot %}
+                    {% thumbnail employee.mugshot "400x400" as medium_mugshot %}
+                        {% thumbnail employee.mugshot "200x200" as small_mugshot %}
+                <img
+                    srcset="{{ large_mugshot.url }} 800w,
+                            {{ medium_mugshot.url }} 400w,
+                            {{ small_mugshot.url }} 200w"
+                    src="{{ medium_mugshot.url }}"
+                    alt="{{ employee.first_name }} {{ employee.last_name }}">
+                        {% endthumbnail %}
+                    {% endthumbnail %}
+                {% endthumbnail %}
+                <figcaption>
+                    <h3 class="staff-name">{{ employee.first_name }}<br>{{ employee.last_name }}</h3>
+                    <p class="staff-title">{{ employee.title }}</p>
+                    <p class="staff-hometown">{{ employee.brief_description }}</p>
+                </figcaption>
+            </figure> <!-- /.staff -->
+            {% endfor %}
+        </div> <!-- /.staff-grid -->
+    </section> <!-- /.people -->
+</div> <!-- /.people-wrapper -->
+
+<div class="contact-wrapper">
+    <section class="contact container">
+        <h2 class="section-title"><em>Contact Us</em></h2>
+        <p class="section-blurb">Put your seatbelt on and give us a call. We are ready to solve your problem. And make you re-think the value of an advertising agency.</p>
+    </section> <!-- /.contact container -->
+</div> <!-- /.contact-wrapper -->
 {% endblock content %}

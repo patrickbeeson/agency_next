@@ -226,7 +226,7 @@ INSTALLED_APPS += (
 
 THUMBNAIL_DEBUG = False
 
-THUMBNAIL = 'PNG'
+THUMBNAIL = 'JPG'
 
 COMPRESS_PRECOMPILERS = (
     ('text/stylus', 'stylus < {infile} > {outfile}'),
