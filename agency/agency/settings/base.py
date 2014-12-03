@@ -109,6 +109,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder'
 )
 ########## END STATIC FILE CONFIGURATION
 
@@ -219,12 +220,17 @@ INSTALLED_APPS += (
     'contact_form',
     'ordered_model',
     'embed_video',
-    'nested_inline'
+    'nested_inline',
+    "compressor"
 )
 
 THUMBNAIL_DEBUG = False
 
 THUMBNAIL = 'PNG'
+
+COMPRESS_PRECOMPILERS = (
+    ('text/stylus', 'stylus < {infile} > {outfile}'),
+)
 ########## END APP CONFIGURATION
 
 
