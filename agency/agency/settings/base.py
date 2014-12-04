@@ -109,7 +109,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    # 'compressor.finders.CompressorFinder',
 )
 ########## END STATIC FILE CONFIGURATION
 
@@ -221,21 +221,21 @@ INSTALLED_APPS += (
     'ordered_model',
     'embed_video',
     'nested_inline',
-    'compressor',
+    # 'compressor',
 )
 
 THUMBNAIL_DEBUG = False
 
 THUMBNAIL = 'JPG'
 
-COMPRESS_PRECOMPILERS = (
-    ('text/stylus', 'stylus < {infile} > {outfile}'),
-)
-
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.yuglify.YUglifyCSSFilter',
-]
+# COMPRESS_PRECOMPILERS = (
+#     ('text/stylus', 'stylus < {infile} > {outfile}'),
+# )
+#
+# COMPRESS_CSS_FILTERS = [
+#     'compressor.filters.css_default.CssAbsoluteFilter',
+#     'compressor.filters.yuglify.YUglifyCSSFilter',
+# ]
 ########## END APP CONFIGURATION
 
 
