@@ -231,6 +231,11 @@ THUMBNAIL = 'JPG'
 COMPRESS_PRECOMPILERS = (
     ('text/stylus', 'stylus < {infile} > {outfile}'),
 )
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.yuglify.YUglifyCSSFilter',
+]
 ########## END APP CONFIGURATION
 
 
