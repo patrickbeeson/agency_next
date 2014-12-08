@@ -2,8 +2,9 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
-from homepage.views import HomePageView
+from homepage.views import HomePageView, AgencyContactFormView
 
 admin.site.site_header = 'The Variable administration'
 
@@ -15,8 +16,15 @@ urlpatterns = patterns(
         name='home'
     ),
     url(
-        r'^contact/',
-        include('contact_form.urls')
+        r'^contact/$',
+        AgencyContactFormView.as_view(),
+        name='contact_form'
+    ),
+    url(
+        r'^contact/sent/$',
+        TemplateView.as_view(
+            template_name='contact_form/contact_form_sent.html'),
+        name='contact_form_sent',
     ),
     url(
         r'^administration/doc/',

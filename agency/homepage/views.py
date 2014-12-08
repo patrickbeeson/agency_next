@@ -1,9 +1,22 @@
 from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
+
+from contact_form.views import ContactFormView
 
 from headlines.models import Headline
 from clients.models import Client
 from staff.models import Employee
 from projects.models import Project
+
+from .forms import AgencyContactForm
+
+
+class AgencyContactFormView(ContactFormView, FormView):
+    """
+    Inherit ContactFormView but with new form reference
+    """
+    form_class = AgencyContactForm
+    success_message = 'Your message was sent successfully'
 
 
 class HomePageView(TemplateView):
