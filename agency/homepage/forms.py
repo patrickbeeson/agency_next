@@ -26,8 +26,7 @@ class AgencyContactForm(ContactForm):
         help_text='Required format: 555-555-5555 or 555-555-5555 ext 12345',
         required=False,
         label=u'Phone',
-        error_message=('Phone number must match the required format: '
-                       '555-555-5555 or 555-555-5555 ext 12345.')
+        error_message=('Phone number must match the required format!')
     )
 
     def __init__(self, *args, **kwargs):

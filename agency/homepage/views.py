@@ -1,5 +1,5 @@
-from django.views.generic import TemplateView
-from django.views.generic.edit import FormView
+from django.core.urlresolvers import reverse
+from django.contrib.messages.views import SuccessMessageMixin
 
 from contact_form.views import ContactFormView
 
@@ -11,17 +11,15 @@ from projects.models import Project
 from .forms import AgencyContactForm
 
 
-class AgencyContactFormView(ContactFormView, FormView):
-    """
-    Inherit ContactFormView but with new form reference
-    """
+class HomePageView(SuccessMessageMixin, ContactFormView):
+    """ The homepage of the agency website. """
     form_class = AgencyContactForm
     success_message = 'Your message was sent successfully'
-
-
-class HomePageView(TemplateView):
-    """ The homepage of the agency website. """
     template_name = 'home.html'
+
+    def get_success_url(self):
+        """ Redirect back to home for success message """
+        return reverse('home')
 
     def get_context_data(self, **kwargs):
         """ Add object context for display. """
