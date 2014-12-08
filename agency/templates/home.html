@@ -55,7 +55,41 @@
         <p class="section-blurb">As a wearer of many hats, we have played many different roles for some of our favorite brands; from data analysis to strategic development to creative execution. Most often, all of the above. But never less than game-changing.</p>
         <div class="clients">
             {% for client in client_list %}
-            <figure class="client">{% if client.website %}<a href="{{ client.website }}"><img src="{{ MEDIA_URL }}{{ client.logo }}" alt="{{ client.name }}"></a>{% else %}<img src="{{ MEDIA_URL }}{{ client.logo }}" alt="{{ client.name }}">{% endif %}</figure> <!-- /.client -->
+            <figure class="client">
+                {% if client.website %}
+                {% thumbnail client.logo "600x600" as large_logo %}
+                {% thumbnail client.logo "300x300" as medium_logo %}
+                {% thumbnail client.logo "150x150" as small_logo %}
+                    <a href="{{ client.website }}">
+                        <img
+                            srcset="{{ large_logo.url }} 600w,
+                                    {{ medium_logo.url }} 300w,
+                                    {{ small_logo.url }} 150w"
+                            sizes="(min-width: 56.25em) 25vw,
+                            33.3333vw"
+                            src="{{ medium_logo.url }}"
+                            alt="{{ client.name }}">
+                    </a>
+                    {% endthumbnail %}
+                    {% endthumbnail %}
+                    {% endthumbnail %}
+                {% else %}
+                {% thumbnail client.logo "600x600" as large_logo %}
+                {% thumbnail client.logo "300x300" as medium_logo %}
+                {% thumbnail client.logo "150x150" as small_logo %}
+                <img
+                    srcset="{{ large_logo.url }} 600w,
+                            {{ medium_logo.url }} 300w,
+                            {{ small_logo.url }} 150w"
+                    sizes="(min-width: 56.25em) 25vw,
+                    33.3333vw"
+                    src="{{ medium_logo.url }}"
+                    alt="{{ client.name }}">
+                        {% endthumbnail %}
+                    {% endthumbnail %}
+                {% endthumbnail %}
+                {% endif %}
+            </figure> <!-- /.client -->
             {% endfor %}
         </div> <!-- /.clients -->
     </section> <!-- /.experience container -->
@@ -65,9 +99,9 @@
     <section class="people">
         <h2 class="section-title">Our<br><em>People</em></h2>
         <p class="section-blurb">We wear weird like a badge. Our goal is to get the most disparate, brilliant thinkers we can find and unleash their creativity on your brand. Here is who we are.</p>
-        <div class="staff-grid">
+        <div class="people-grid">
             {% for employee in employee_list %}
-            <figure class="staff">
+            <figure class="person">
                 {% thumbnail employee.mugshot "800x800" as large_mugshot %}
                     {% thumbnail employee.mugshot "400x400" as medium_mugshot %}
                         {% thumbnail employee.mugshot "200x200" as small_mugshot %}
@@ -81,9 +115,9 @@
                     {% endthumbnail %}
                 {% endthumbnail %}
                 <figcaption>
-                    <h3 class="staff-name">{{ employee.first_name }}<br>{{ employee.last_name }}</h3>
-                    <p class="staff-title">{{ employee.title }}</p>
-                    <p class="staff-hometown">{{ employee.brief_description }}</p>
+                    <h3 class="person-name">{{ employee.first_name }}<br>{{ employee.last_name }}</h3>
+                    <p class="person-title">{{ employee.title }}</p>
+                    <p class="person-hometown">{{ employee.brief_description }}</p>
                 </figcaption>
             </figure> <!-- /.staff -->
             {% endfor %}
