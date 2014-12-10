@@ -3,3 +3,121 @@
 //   FORMS
 //
 // --------------------------------------------------
+
+
+
+
+
+.form-group
+  margin 0 0 10px
+  padding 0
+  width 100%
+  transition all 400ms
+
+label
+  font-size 10px
+  font-family nevis
+  text-transform uppercase
+
+.form-control
+  padding 10px
+  width 100%
+  height 40px
+  display block
+  font-size 16px
+  font-family volkorn
+  font-style italic
+  color brand-gold
+  background #fff
+  border 1px solid #000
+  border-radius 0
+  outline none
+  transition border-color .2s ease-in-out
+  -webkit-appearance none
+  -moz-appearance none
+  placeholder(brand-gray-darker)
+  &:focus
+    border-color brand-gold
+
+.form-select
+  padding 10px
+  width 100%
+  font-size 16px
+  font-family volkorn
+  font-style italic
+  color brand-gray-darker
+  background url(../img/icon-arrow-down.png) 97% 52%
+  background-size 11px 6px
+  background-repeat no-repeat
+  border 0
+  border 1px solid #000
+  outline none
+  border-radius 0
+  -webkit-appearance none
+  -moz-appearance none
+
+.form-textarea
+  @extends .form-control
+  height auto
+
+.form-button
+  padding 10px 20px
+  width auto
+  display block
+  font-size 13px
+  font-family nevis
+  text-transform uppercase
+  letter-spacing .08em
+  color brand-gold
+  background #000
+  border none
+  border-radius 0
+  cursor pointer
+  -webkit-appearance none
+  -moz-appearance none
+
+input:focus::-webkit-input-placeholder
+  opacity .2
+input:focus:-moz-placeholder
+  opacity .2
+input:focus::-moz-placeholder
+  opacity .2
+input:focus:-ms-input-placeholder
+  opacity .2
+
+textarea:focus::-webkit-input-placeholder
+  opacity .2
+textarea:focus:-moz-placeholder
+  opacity .2
+textarea:focus::-moz-placeholder
+  opacity .2
+textarea:focus:-ms-input-placeholder
+  opacity .2
+
+
+/* PARSLEY VALIDATION STYLES
+================================================== */
+.parsley-error
+  border-color #f6bc33 !important
+
+.parsley-success
+  color brand-gold !important
+  border-color brand-gold !important
+
+.parsley-errors-list
+  margin 0
+  padding 0
+  list-style-type none
+  li
+    padding 5px 10px
+    font-size 10px
+    font-family nevis
+    text-transform uppercase
+    color brand-gray-darker
+    background #f6bc33
+    &::before
+      content '\2191'
+      padding-right 5px
+      font-size 13px
+      font-family nevis
+      text-transform uppercase

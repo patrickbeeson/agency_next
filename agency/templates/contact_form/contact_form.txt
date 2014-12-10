@@ -1,0 +1,7 @@
+{{ name }} ({{ email }}) wrote:
+
+[{{ interest }}]
+
+{{ body|safe }}
+
+{% if phone %}Phone: {{ phone }}{% endif %}

@@ -1,14 +1,14 @@
 $(function() {
 
   // Hamburger menu icon
-  $("#js-hamburger").click(function (e) {
-    e.preventDefault();
-    $(this).toggleClass("is-open");
-  });
+  // $("#js-hamburger").click(function (e) {
+  //   e.preventDefault();
+  //   $(this).toggleClass("is-open");
+  // });
 
   // Project list parallax
   if ($(window).width()>980 && !Modernizr.touch) {
-    
+
   }
 
   // Project videos
