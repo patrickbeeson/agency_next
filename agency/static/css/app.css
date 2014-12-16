@@ -612,22 +612,24 @@ textarea:focus:-ms-input-placeholder {
   transform: translateY(0) rotate(-45deg);
 }
 .hero-wrapper {
+  position: relative;
+  overflow: hidden;
   background: url("../img/bg-texture.png");
 }
 .hero {
-  padding: 70px 0 50px;
+  padding: 70px 0 100px;
   background: url("../img/bg-hero.png") 50% 12% no-repeat;
   background-size: 25px 14px;
 }
 @media (min-width: 43.75em) {
   .hero {
-    padding: 110px 0 70px;
+    padding: 110px 0;
     background-size: 60px 34px;
   }
 }
 @media (min-width: 56.25em) {
   .hero {
-    padding: 170px 0 100px;
+    padding: 170px 0;
     background-size: 80px 45px;
     background-position: 50% 9%;
   }
@@ -758,12 +760,12 @@ textarea:focus:-ms-input-placeholder {
   }
 }
 .secret-sauce-wrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   background: #000;
 }
-.secret-sauce {
-  text-align: center;
-}
-.secret-sauce a {
+.secret-button {
   padding: 15px 0;
   width: 100%;
   display: block;
@@ -773,17 +775,19 @@ textarea:focus:-ms-input-placeholder {
   font-family: "Vollkorn", Georgia, Cambria, "Times New Roman", Times, serif;
   font-style: italic;
   line-height: 1;
+  text-align: center;
   text-decoration: none;
   letter-spacing: 0.08em;
   color: #95784e;
+  background: #000;
 }
-.secret-sauce a em {
+.secret-button em {
   font-family: "Nevis", "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
   font-style: normal;
   text-transform: uppercase;
 }
-.secret-sauce a:before {
-  content: url("../img/icon-secret-sauce-caret.png");
+.secret-button:before {
+  content: url("../img/icon-secret-sauce-caret-up.png");
   margin-left: -35px;
   padding-top: 10px;
   width: 70px;
@@ -795,19 +799,99 @@ textarea:focus:-ms-input-placeholder {
   background: #000;
   border-radius: 35px 35px 0 0;
 }
+.secret-button.is-toggled:before {
+  content: url("../img/icon-secret-sauce-caret-down.png");
+}
 @media (min-width: 56.25em) {
-  .secret-sauce a {
+  .secret-button {
     padding: 20px 0;
     font-size: 22px;
     font-size: 1.375rem;
   }
-  .secret-sauce a:before {
+  .secret-button:before {
     margin-left: -48px;
     padding-top: 15px;
     width: 96px;
     height: 48px;
     top: -30px;
     border-radius: 48px 48px 0 0;
+  }
+}
+.secret-content {
+  position: relative;
+  display: none;
+  overflow: hidden;
+  background: #000 url("../img/bg-secret-content.png") center no-repeat;
+  background-size: contain;
+}
+.secret-content .col {
+  padding: 0;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  font-family: volkorn;
+  font-style: italic;
+  line-height: 1.35;
+  text-align: center;
+  color: #fff;
+}
+.secret-content .lead p {
+  padding: 10px 0;
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+  color: #95784e;
+  border: 1px solid #fff;
+  border-width: 1px 0;
+}
+@media (min-width: 43.75em) {
+  .secret-content {
+    padding: 40px 0;
+  }
+  .secret-content:before {
+    content: '';
+    margin-left: -75px;
+    width: 150px;
+    height: 1px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: #95784e;
+  }
+  .secret-content .col {
+    padding: 0 20px;
+    font-size: 15px;
+    font-size: 0.9375rem;
+    text-align: left;
+  }
+  .secret-content .lead p {
+    font-size: 22px;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    text-align: left;
+  }
+}
+@media (min-width: 56.25em) {
+  .secret-content {
+    padding: 90px 0;
+  }
+  .secret-content:before {
+    margin-left: -150px;
+    width: 300px;
+  }
+  .secret-content .col {
+    padding: 0 40px;
+    font-size: 18px;
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+  .secret-content .lead p {
+    padding: 40px 0;
+    font-size: 33px;
+    font-size: 2.0625rem;
+    line-height: 1.5;
   }
 }
 .experience,
@@ -1489,13 +1573,10 @@ textarea:focus:-ms-input-placeholder {
   max-width: none;
 }
 .project-content {
-  margin: auto;
-  height: 140px;
+  width: 100%;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
   text-align: center;
 }
 .project-content .project-title {

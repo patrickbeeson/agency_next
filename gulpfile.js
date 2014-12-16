@@ -14,14 +14,14 @@ var nib = require('nib');
 
 // Link Task
 gulp.task('lint', function() {
-    return gulp.src('js/*.js')
+    gulp.src('js/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
 // Compile our Stylus
 gulp.task('stylus', function() {
-    return gulp.src('agency/static/css/app.styl')
+    gulp.src('agency/static/css/app.styl')
         .pipe(stylus({
             use: [nib()],
             compress: false
@@ -31,21 +31,30 @@ gulp.task('stylus', function() {
 
 // Concatenate CSS
 gulp.task('styles', function() {
-    return gulp.src(['agency/static/css/slick.css', 'agency/static/css/app.css'])
-    .pipe(concat('all.min.css'))
-    .pipe(gulp.dest('agency/static/css'));
+    gulp.src(['agency/static/css/slick.css', 'agency/static/css/app.css'])
+        .pipe(concat('all.min.css'))
+        .pipe(gulp.dest('agency/static/css'));
 });
 
 // Minify CSS
 gulp.task('minify-css', function() {
-    return gulp.src('agency/static/css/all.min.css')
+    gulp.src('agency/static/css/all.min.css')
         .pipe(minifyCSS({keepBreaks:true}))
         .pipe(gulp.dest('agency/static/css'))
 });
 
 // Concatenate and minify js
 gulp.task('scripts', function() {
-    return gulp.src('agency/static/js/*.js')
+    gulp.src([
+            'agency/static/js/jquery.js',
+            'agency/static/js/jquery.stellar.js',
+            'agency/static/js/fastclick.js',
+            'agency/static/js/modernizr.custom.min.js',
+            'agency/static/js/parallax.js',
+            'agency/static/js/parsley.js',
+            'agency/static/js/slick.js',
+            'agency/static/js/app.js',
+        ])
         .pipe(concat('all.js'))
         .pipe(gulp.dest('agency/static/js'))
         .pipe(rename('all.min.js'))

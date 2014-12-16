@@ -12,17 +12,19 @@
 //   HERO
 // --------------------------------------------------
 .hero-wrapper
+  position relative // For positioning secret sauce expander
+  overflow hidden
   background url(../img/bg-texture.png)
 
 .hero
-  padding 70px 0 50px
+  padding 70px 0 100px
   background url(../img/bg-hero.png) 50% 12% no-repeat
   background-size 25px 14px
   @media (min-width: 43.75em)
-    padding 110px 0 70px
+    padding 110px 0
     background-size 60px 34px
   @media (min-width: 56.25em)
-    padding 170px 0 100px
+    padding 170px 0
     background-size 80px 45px
     background-position 50% 9%
 
@@ -113,3 +115,126 @@
     margin 0 auto
     width 90%
     font-size 26px
+
+// --------------------------------------------------
+//   SECRET SAUCE
+// --------------------------------------------------
+.secret-sauce-wrapper
+  width 100%
+  position absolute
+  bottom 0
+  background #000
+  // background #000 url(../img/bg-secret-sauce-wrapper.png) left bottom repeat-x
+
+.secret-sauce
+  //
+
+.secret-button
+  padding 15px 0
+  width 100%
+  display block
+  position relative // For positioning the :after
+  font-size 16px
+  font-family vollkorn
+  font-style italic
+  line-height 1
+  text-align center
+  text-decoration none
+  letter-spacing .08em
+  color brand-gold
+  background #000
+  em
+    font-family nevis
+    font-style normal
+    text-transform uppercase
+  &:before
+    content url(../img/icon-secret-sauce-caret-up.png)
+    margin-left -35px
+    padding-top 10px
+    width 70px
+    height 35px
+    display block
+    position absolute
+    top -25px
+    left 50%
+    background #000
+    border-radius 35px 35px 0 0
+  &.is-toggled
+    &:before
+      content url(../img/icon-secret-sauce-caret-down.png)
+  @media (min-width: 56.25em)
+    padding 20px 0
+    font-size 22px
+    &:before
+      margin-left -48px
+      padding-top 15px
+      width 96px
+      height 48px
+      top -30px
+      border-radius 48px 48px 0 0
+
+.secret-content
+  // max-height 0
+  position relative // For positioning :before element
+  display none
+  overflow hidden
+  background #000 url(../img/bg-secret-content.png) center no-repeat
+  background-size contain
+  // transition max-height 1s ease-in-out
+  &.is-open
+    // max-height 800px
+  .col
+    padding 0
+    font-size 13px
+    font-family volkorn
+    font-style italic
+    line-height 1.35
+    text-align center
+    color #fff
+  .lead
+    p
+      padding 10px 0
+      font-size 18px
+      font-style normal
+      line-height 1
+      text-align center
+      color brand-gold
+      border 1px solid #fff
+      border-width 1px 0
+  @media (min-width: 43.75em)
+    padding 40px 0
+    &:before
+      content ''
+      margin-left -75px
+      width 150px
+      height 1px
+      display block
+      position absolute
+      top 0
+      left 50%
+      background brand-gold
+    .col
+      padding 0 20px
+      font-size 15px
+      text-align left
+    .lead
+      p
+        font-size 22px
+        line-height 1.25
+        text-align left
+  @media (min-width: 48em)
+    //
+  @media (min-width: 56.25em)
+    padding 90px 0
+    &:before
+      margin-left -150px
+      width 300px
+    .col
+      padding 0 40px
+      font-size 18px
+      line-height 1.75
+    .lead
+      p
+        padding 40px 0
+        font-size 33px
+        line-height 1.5
