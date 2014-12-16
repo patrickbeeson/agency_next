@@ -36,7 +36,7 @@ class AgencyContactForm(ContactForm):
         error_message=('Phone number must match the required format!'),
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Phone (optional)',
+                'placeholder': 'Phone (format: 555-555-5555 or 555-555-5555 ext 12345)',
                 'class': 'form-control',
                 'data-parsley-trigger': 'change',
                 'data-parsley-error-message': 'Oops! Is this a valid phone number?',
