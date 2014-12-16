@@ -36,6 +36,7 @@ class AgencyContactForm(ContactForm):
         error_message=('Phone number must match the required format!'),
         widget=forms.TextInput(
             attrs={
+                'placeholder': 'Phone (optional)',
                 'class': 'form-control',
                 'data-parsley-trigger': 'change',
                 'data-parsley-error-message': 'Oops! Is this a valid phone number?',
@@ -51,6 +52,7 @@ class AgencyContactForm(ContactForm):
         self.fields['name'].widget = forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': 'Name *',
                 'data-parsley-trigger': 'change',
                 'data-parsley-error-message': 'We need your name',
                 'required': 'required',
@@ -60,6 +62,7 @@ class AgencyContactForm(ContactForm):
         self.fields['email'].widget = forms.EmailInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': 'Email *',
                 'data-parsley-trigger': 'change',
                 'data-parsley-error-message': 'We need a valid email address',
                 'required': 'required',
@@ -69,6 +72,7 @@ class AgencyContactForm(ContactForm):
         self.fields['body'].widget = forms.Textarea(
             attrs={
                 'class': 'form-textarea',
+                'placeholder': 'Your message *',
                 'data-parsley-trigger': 'change',
                 'data-parsley-error-message': 'Looks like you forgot to include your message.',
                 'required': 'required',
