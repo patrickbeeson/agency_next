@@ -1,3 +1,13 @@
-{{ obj.name }}
-
-{{ obj.asset_set.all }}
+{% if obj.imageasset_set.count == 1 %}
+    {% for imageasset in obj.imageasset_list.all %}
+    <div class="panel-media panel-col panel-col--1of1">
+        <img src="{{ MEDIA_URL }}{{ imageasset.image }}" alt="{{ imageasset.name }}">
+    </div>
+    {% endfor %}
+{% elif obj.imageasset_set.count > 1 %}
+{% for imageasset in obj.imageasset_list.all %}
+<div class="panel-media panel-col panel-col--1of{{ forloop.counter }}">
+    <img src="{{ MEDIA_URL }}{{ imageasset.image }}" alt="{{ imageasset.name }}">
+</div> <!-- /.panel-media panel-col panel-col--1of{{ forloop.counter }} -->
+{% endfor %}
+{% endif %}

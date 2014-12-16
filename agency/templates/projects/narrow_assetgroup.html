@@ -1,0 +1,19 @@
+{% if obj.textasset_set %}
+    {% for textasset in obj.textasset_list.all %}
+    <div class="panel-content panel-col panel-col--1of1">
+        <p>{{ textasset.text }}</p>
+    </div> <!-- /.panel-content panel-col panel-col--1of1 -->
+    {% endfor %}
+{% elif obj.imageasset_set.count == 1 %}
+    {% for imageasset in obj.imageasset_list.all %}
+    <div class="panel-media panel-col panel-col--1of1">
+        <img src="{{ MEDIA_URL }}{{ imageasset.image }}" alt="{{ imageasset.name }}">
+    </div> <!-- /.panel-media panel-col panel-col--1of1 -->
+    {% endfor %}
+{% elif obj.imageasset_set.count > 1 %}
+    {% for imageasset in obj.imageasset_list.all %}
+    <div class="panel-media panel-col panel-col--1of{{ forloop.counter }}">
+        <img src="{{ MEDIA_URL }}{{ imageasset.image }}" alt="{{ imageasset.name }}">
+    </div> <!-- /.panel-media panel-col panel-col--1of{{ forloop.counter }} -->
+    {% endfor %}
+{% endif %}

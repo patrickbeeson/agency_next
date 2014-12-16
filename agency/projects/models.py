@@ -106,7 +106,7 @@ class AssetGroup(OrderedModel):
     TYPE = Choices(
         ('fullbleed', _('Full bleed')),
         ('centered', _('Centered')),
-        ('centerednarrow', _('Centered Narrow')),
+        ('narrow', _('Centered Narrow')),
         ('5050', _('50/50')),
         ('6030', _('60/30')),
         ('3060', _('30/60'))

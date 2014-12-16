@@ -1,11 +1,31 @@
-{% if obj.videoasset_set.count %}
+{% if obj.videoasset_set %}
     {% for videoasset in obj.videoasset_list.all %}
-        <div class="panel-video--full" data-video-id="{{ videoasset.get_video_id }}" style="background-image: url({{ videoasset.get_video_thumbnail_url }})">
-            <a class="video-icon"></a> <!-- /.video-icon -->
+        <div class="panel-video--full" data-video-id="{{ videoasset.get_video_id }}">
+            <img src="{{ videoasset.get_video_thumbnail_url }}" alt="{{ videoasset.name }}">
+            <a class="video-icon"></a>
         </div> <!-- /.panel-media--full -->
     {% endfor %}
 {% elif obj.imageasset_set.count == 1 %}
     {% for imageasset in obj.imageasset_list.all %}
-        <div class="panel-media--full" style="background-image: url({{ MEDIA_URL }}{{ imageasset.image }})"></div> <!-- /.panel-media--full -->
+        <div class="panel-media--full">
+            <img src="{{ MEDIA_URL }}{{ imageasset.image }}" alt="imageasset.name">
+        </div> <!-- /.panel-media--full -->
     {% endfor %}
+{% elif obj.imageasset_set.count > 1 %}
+        <div class="slides slides--full">
+            {% for imageasset in obj.imageasset_list.all %}
+            <div class="slide">
+                <div class="slide-media">
+                    <img src="{{ MEDIA_URL }}{{ imageasset.image }}" alt="{{ imageasset.name }}">
+                </div> <!-- /.slide-media -->
+                <div class="slide-content">
+                    <p class="slide-description">{{ imageasset.description }}</p>
+                    <div class="slide-count">
+                        <span class="slide-current">{{ forloop.counter }}</span>
+                        <span class="slide-total">{{ obj.imageasset_set.count }}</span>
+                    </div> <!-- /.slide-count -->
+                </div> <!-- /.slide-content -->
+            </div> <!-- /.slide -->
+            {% endfor %}
+        </div>
 {% endif %}
