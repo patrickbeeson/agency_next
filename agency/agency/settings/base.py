@@ -219,7 +219,6 @@ INSTALLED_APPS += (
     'contact_form',
     'ordered_model',
     'embed_video',
-    'nested_inline',
 )
 
 THUMBNAIL_DEBUG = False
