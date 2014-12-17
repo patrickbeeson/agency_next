@@ -74,7 +74,7 @@ class ProjectAdmin(OrderedModelAdmin, AdminImageMixin, NestedModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    prepopulated_fields = {'slug': ('name',)}
 
 
 admin.site.register(Project, ProjectAdmin)

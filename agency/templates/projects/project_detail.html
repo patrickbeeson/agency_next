@@ -1,8 +1,8 @@
-{% extends "base_project.hml" %}
+{% extends "base_project.html" %}
 {% block content %}
 <section class="project-hero">
     <div class="project-hero-container">
-        <img src="static/img/img-hero.jpg" alt="Project Hero Image">
+        <img src="{{ MEDIA_URL }}{{ project.hero_image }}" alt="{{ project.name }}">
     </div> <!-- /.project-hero-container -->
 </section> <!-- /.project-hero -->
 
@@ -13,7 +13,17 @@
       <div class="panel-intro panel-col panel-col--1of1">
         <div class="project-disciplines">
         {% for category in project.categories.all %}
-          <span class="project-discipline">{% if not forloop.last %}{{ category.name }}, {% else %}&amp; {{ category.name }}{% endif %}</span>
+            <span class="project-discipline">
+                {% if project.categories.count > 1 %}
+                    {% if forloop.last %}
+                        &amp; {{ category.name }}
+                    {% else %}
+                        {{ category.name }}{% if forloop.revcounter0 > 1 %}, {% endif %}
+                    {% endif %}
+                {% else %}
+                    {{ category.name }}
+                {% endif %}
+            </span>
         {% endfor %}
         </div> <!-- /.disciplines -->
         <h1 class="project-title">{{ project.name }}</h1>
