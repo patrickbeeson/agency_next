@@ -1,8 +1,21 @@
 {% extends "base_project.html" %}
+{% load thumbnail %}
+
 {% block content %}
 <section class="project-hero">
     <div class="project-hero-container">
-        <img src="{{ MEDIA_URL }}{{ project.hero_image }}" alt="{{ project.name }}">
+        {% thumbnail project.hero_image "3400x1500" as large_hero %}
+        {% thumbnail project.hero_image "1700x750" as medium_hero %}
+        {% thumbnail project.hero_image "850x375" as small_hero %}
+        <img
+        srcset="{{ large_hero.url }} 3400w,
+                {{ medium_hero.url }} 1700w,
+                {{ small_hero.url }} 850w"
+        src="{{ medium_hero.url }}"
+        alt="{{ project.name }}">
+        {% endthumbnail %}
+        {% endthumbnail %}
+        {% endthumbnail %}
     </div> <!-- /.project-hero-container -->
 </section> <!-- /.project-hero -->
 
