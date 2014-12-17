@@ -3,6 +3,7 @@
 {% if obj.textasset_set.count %}
     {% for textasset in obj.textasset_set.all %}
     <div class="panel-content panel-col panel-col--1of1">
+        {% if textasset.title %}<h3>{{ textasset.title }}</h3>{% endif %}
         <p>{{ textasset.text }}</p>
     </div> <!-- /.panel-content panel-col panel-col--1of1 -->
     {% endfor %}
