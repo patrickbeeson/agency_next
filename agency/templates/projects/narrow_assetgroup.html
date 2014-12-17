@@ -22,7 +22,7 @@
     {% endfor %}
 {% elif obj.imageasset_set.count > 1 %}
     {% for imageasset in obj.imageasset_set.all %}
-    <div class="panel-media panel-col panel-col--1of{{ forloop.counter }}">
+    <div class="panel-media panel-col panel-col--1of2">
         {% thumbnail imageasset.image "660" as large_image %}
         {% thumbnail imageasset.image "330" as medium_image %}
         <img

@@ -17,11 +17,11 @@
 {% elif obj.imageasset_set.count > 1 %}
 {% for imageasset in obj.imageasset_set.all %}
 <div class="panel-media panel-col panel-col--1of2">
-    {% thumbnail imageasset.image "1900" as large_image %}
-    {% thumbnail imageasset.image "950" as medium_image %}
+    {% thumbnail imageasset.image "920" as large_image %}
+    {% thumbnail imageasset.image "460" as medium_image %}
     <img
-        srcset="{{ large_image.url }} 1900w,
-        {{ medium_image.url }} 950w"
+        srcset="{{ large_image.url }} 920w,
+        {{ medium_image.url }} 460w"
         src="{{ medium_image.url }}"
         alt="{{ imageasset.name }}">
     {% endthumbnail %}
