@@ -1269,7 +1269,7 @@ textarea:focus:-ms-input-placeholder {
   left: 0;
 }
 .panel.has-bg {
-  background: #f0f0f0 url("/assets/img/bg-texture.png");
+  background: #f0f0f0 url("../img/bg-texture.png");
 }
 .panel-collection {
   padding: 30px 0;
@@ -1403,7 +1403,7 @@ textarea:focus:-ms-input-placeholder {
   position: absolute;
   top: 50%;
   left: 50%;
-  background: url("/assets/img/icon-video-play.png") center no-repeat;
+  background: url("../img/icon-video-play.png") center no-repeat;
   opacity: 0.7;
   cursor: pointer;
 }

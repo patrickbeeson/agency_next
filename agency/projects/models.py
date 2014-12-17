@@ -240,7 +240,7 @@ class VideoAsset(CommonAsset):
         video = detect_backend(self.video)
         orig_thumbnail_url = video.get_thumbnail_url().split('_')
         new_thumbnail_url = (
-            '{}_{}'.format(orig_thumbnail_url, '3400x1500.jpg')
+            '{}_{}'.format(orig_thumbnail_url[0], '3400x1500.jpg')
         )
         return new_thumbnail_url
 
