@@ -2,7 +2,6 @@ from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 from embed_video.admin import AdminVideoMixin
 from ordered_model.admin import OrderedModelAdmin
-from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
 from projects.models import Project, Category, AssetGroup, ImageAsset, \
     TextAsset, VideoAsset
@@ -21,36 +20,54 @@ class CommonAssetAdmin(admin.ModelAdmin):
 
 
 class ImageAssetAdmin(CommonAssetAdmin):
-    pass
+    fieldsets = (
+        (None, {
+            'fields': ('image', 'caption',)
+        }),
+        ('Admin options', {
+            'classes': ('collapse',),
+            'fields': ('name', 'description', 'group', 'project',)
+        }),
+    )
 
 
 class TextAssetAdmin(CommonAssetAdmin):
-    pass
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'text',)
+        }),
+        ('Admin options', {
+            'classes': ('collapse',),
+            'fields': ('name', 'description', 'group', 'project',)
+        }),
+    )
 
 
 class VideoAssetAdmin(CommonAssetAdmin):
-    pass
+    fieldsets = (
+        (None, {
+            'fields': ('video', 'caption',)
+        }),
+        ('Admin options', {
+            'classes': ('collapse',),
+            'fields': ('name', 'description', 'group', 'project',)
+        }),
+    )
 
 
-class ImageAssetInline(AdminImageMixin, NestedStackedInline):
+class ImageAssetInline(AdminImageMixin, admin.StackedInline):
     model = ImageAsset
     extra = 2
 
 
-class TextAssetInline(NestedStackedInline):
+class TextAssetInline(admin.StackedInline):
     model = TextAsset
     extra = 1
 
 
-class VideoAssetInline(AdminVideoMixin, NestedStackedInline):
+class VideoAssetInline(AdminVideoMixin, admin.StackedInline):
     model = VideoAsset
     extra = 1
-
-
-class AssetGroupInline(NestedStackedInline):
-    model = AssetGroup
-    extra = 5
-    inlines = [ImageAssetInline, TextAssetInline, VideoAssetInline]
 
 
 class AssetGroupAdmin(OrderedModelAdmin, admin.ModelAdmin):
@@ -58,19 +75,17 @@ class AssetGroupAdmin(OrderedModelAdmin, admin.ModelAdmin):
         'name',
         'asset_group_type',
         'project',
-        'order',
         'move_up_down_links'
     )
     list_filter = ('project', 'asset_group_type')
     inlines = [ImageAssetInline, TextAssetInline, VideoAssetInline]
 
 
-class ProjectAdmin(OrderedModelAdmin, AdminImageMixin, NestedModelAdmin):
+class ProjectAdmin(OrderedModelAdmin, AdminImageMixin):
     list_filter = ('categories', 'is_featured', 'status')
     search_fields = ('categories', 'description', 'name')
     list_display = ('name', 'is_featured', 'status', 'move_up_down_links')
     prepopulated_fields = {'slug': ('name',)}
-    inlines = [AssetGroupInline]
 
 
 class CategoryAdmin(admin.ModelAdmin):

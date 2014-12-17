@@ -1,10 +1,20 @@
-{% if obj.textasset_set %}
-{% for imageasset in obj.imageasset_list.all %}
+{% load thumbnail %}
+
+{% if obj.textasset_set.count %}
+{% for imageasset in obj.imageasset_set.all %}
 <div class="panel-media panel-col panel-col--2of3">
-    <img src="{{ MEDIA_URL }}{{ imageasset.image }}" alt="{{ imageasset.name }}">
+    {% thumbnail imageasset.image "1246" as large_image %}
+    {% thumbnail imageasset.image "623" as medium_image %}
+    <img
+        srcset="{{ large_image.url }} 1246w,
+        {{ medium_image.url }} 623w"
+        src="{{ medium_image.url }}"
+        alt="{{ imageasset.name }}">
+    {% endthumbnail %}
+    {% endthumbnail %}
 </div>
 {% endfor %}
-{% for textasset in obj.textasset_list.all %}
+{% for textasset in obj.textasset_set.all %}
 <div class="panel-content panel-col panel-col--1of3">
     <p>{{ textasset.text }}</p>
 </div>

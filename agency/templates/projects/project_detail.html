@@ -46,7 +46,7 @@
   </div> <!-- /.panel -->
 
 {% for assetgroup in assetgroup_list %}
-<div class="panel{% if assetgroup.has_emphasis %}has-bg{% endif %}">
+<div class="panel {% if assetgroup.has_emphasis %}has-bg{% endif %}">
     <div class="panel-collection panel-collection--{{ assetgroup.asset_group_type }}">
     {{ assetgroup.as_html }}
     </div>

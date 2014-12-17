@@ -108,7 +108,7 @@ class AssetGroup(OrderedModel):
         ('centered', _('Centered')),
         ('narrow', _('Centered Narrow')),
         ('6030', _('60/30')),
-        ('3060', _('30/60'))
+        ('3060', _('30/60')),
     )
     asset_group_type = models.CharField(
         help_text='Default is centered. Choice impacts display of group.',
@@ -130,6 +130,7 @@ class AssetGroup(OrderedModel):
             display purposes.'
     )
     project = models.ForeignKey(Project)
+    order_with_respect_to = 'project'
 
     class Meta(OrderedModel.Meta):
         pass
