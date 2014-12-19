@@ -40,10 +40,9 @@
 .slick-dots li button:before{position:absolute;top:0;left:0;content:"•";width:20px;height:20px;font-family:slick;font-size:6px;line-height:20px;text-align:center;color:#000;opacity:.25;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .slick-dots li.slick-active button:before{color:#000;opacity:.75}
 @font-face{font-family:Nevis;src:url(../fonts/nevis/Nevis-Bold.ttf.eot);src:url(../fonts/nevis/Nevis-Bold.ttf.eot?#iefix) format("embedded-opentype"),url(../fonts/nevis/Nevis-Bold.ttf.woff) format("woff"),url(../fonts/nevis/Nevis-Bold.ttf.svg#Nevis) format("svg");font-weight:700;font-style:normal}
-@font-face{font-family:Sentinel;src:url(../fonts/sentinel/Sentinel-Book-webfont.eot);src:url(../fonts/sentinel/Sentinel-Book-webfont.eot?#iefix) format("embedded-opentype"),url(../fonts/sentinel/Sentinel-Book-webfont.woff) format("woff"),url(../fonts/sentinel/Sentinel-Book-webfont.ttf) format("truetype"),url(../fonts/sentinel/Sentinel-Book-webfont.svg#Sentinel) format("svg");font-weight:400;font-style:normal}
 *,:after,:before{box-sizing:border-box}
 html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-body{margin:0;font-family:"Open Sans","Helvetica Neue",HelveticaNeue,Helvetica,Arial,sans-serif;font-weight:400;font-size:16px;line-height:1.5;color:#585858;background-color:#fff}
+body{margin:0;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;font-weight:400;font-size:16px;line-height:1.5;color:#585858;background-color:#fff}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 blockquote,caption,dd,dl,fieldset,form,h1,h2,h3,h4,h5,h6,hr,legend,ol,p,pre,table,td,th,ul{margin:0;padding:0}
 li{display:block}
@@ -146,12 +145,12 @@ textarea:focus:-ms-input-placeholder{opacity:.2}
 .hero{padding:70px 0 100px;background:url(../img/bg-hero.png) 50% 12%/25px 14px no-repeat}
 @media (min-width:43.75em){.hero{padding:110px 0;background-size:60px 34px}}
 @media (min-width:56.25em){.hero{padding:170px 0;background-size:80px 45px;background-position:50% 9%}}
-.hero-blurb{margin:0 0 20px;font-size:24px;font-size:1.5rem;font-family:Sentinel,vollkorn,Georgia,Cambria,"Times New Roman",Times,serif;line-height:1.25;text-transform:none;text-align:center}
+.hero-blurb{margin:0 0 20px;font-size:20px;font-size:1.25rem;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;line-height:1.25;text-transform:none;text-align:center}
 @media (min-width:30em){.hero-blurb{font-size:28px;font-size:1.75rem}}
-@media (min-width:43.75em){.hero-blurb{margin:0 0 30px;font-size:58px;font-size:3.625rem;line-height:1}}
-@media (min-width:56.25em){.hero-blurb{margin:0 0 40px;font-size:88px;font-size:5.5rem}}
+@media (min-width:43.75em){.hero-blurb{margin:0 0 30px;font-size:48px;font-size:3rem;line-height:1}}
+@media (min-width:56.25em){.hero-blurb{margin:0 0 40px;font-size:78px;font-size:4.875rem}}
 .hero-blurb-badge{margin-bottom:20px;width:100%;height:37px;position:relative}
-.hero-blurb-badge span{margin:0 auto;width:82px;height:37px;display:block;font-size:14px;font-size:.875rem;font-family:Vollkorn,Georgia,Cambria,"Times New Roman",Times,serif;font-weight:400;font-style:italic;line-height:37px;text-align:center;background:url(../img/bg-hero-badge.svg) 0 0/82px 37px no-repeat}
+.hero-blurb-badge span{margin:0 auto;width:82px;height:37px;display:block;font-size:14px;font-size:.875rem;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;font-weight:400;font-style:italic;line-height:37px;text-align:center;background:url(../img/bg-hero-badge.svg) 0 0/82px 37px no-repeat}
 .hero-blurb-badge:after,.hero-blurb-badge:before{content:'';display:block;width:calc(50% - 55px);height:1px;position:absolute;top:calc(50% - 1px);left:0;background:#585858}
 .hero-blurb-badge:after{left:auto;right:0}
 @media (min-width:43.75em){.hero-blurb-badge{margin-bottom:30px}}
@@ -159,19 +158,19 @@ textarea:focus:-ms-input-placeholder{opacity:.2}
 .hero-blurb-badge span{width:114px;height:51px;font-size:20px;font-size:1.25rem;line-height:51px;background-size:114px 51px}
 .hero-blurb-badge:after,.hero-blurb-badge:before{width:35%;left:6%}
 .hero-blurb-badge:after{left:auto;right:6%}}
-.hero-tagline{margin:0;font-size:12px;font-size:.75rem;font-family:Vollkorn,Georgia,Cambria,"Times New Roman",Times,serif;font-weight:400;font-style:italic;line-height:1.3;text-transform:none;text-align:center}
+.hero-tagline{margin:0;font-size:12px;font-size:.75rem;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;font-weight:400;font-style:italic;line-height:1.3;text-transform:none;text-align:center}
 @media (min-width:30em){.hero-tagline{font-size:14px;font-size:.875rem}}
 @media (min-width:43.75em){.hero-tagline{font-size:20px;font-size:1.25rem}}
 @media (min-width:56.25em){.hero-tagline{margin:0 auto;width:90%;font-size:26px;font-size:1.625rem}}
 .secret-sauce-wrapper{width:100%;position:absolute;bottom:0;background:#000}
-.secret-button{padding:15px 0;width:100%;display:block;position:relative;font-size:16px;font-size:1rem;font-family:Vollkorn,Georgia,Cambria,"Times New Roman",Times,serif;font-style:italic;line-height:1;text-align:center;text-decoration:none;letter-spacing:.08em;color:#95784e;background:#000}
+.secret-button{padding:15px 0;width:100%;display:block;position:relative;font-size:16px;font-size:1rem;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;font-style:italic;line-height:1;text-align:center;text-decoration:none;letter-spacing:.08em;color:#95784e;background:#000}
 .secret-button em{font-family:Nevis,"Helvetica Neue",HelveticaNeue,Helvetica,Arial,sans-serif;font-style:normal;text-transform:uppercase}
 .secret-button:before{content:url(../img/icon-secret-sauce-caret-up.png);margin-left:-35px;padding-top:10px;width:70px;height:35px;display:block;position:absolute;top:-25px;left:50%;background:#000;border-radius:35px 35px 0 0}
 .secret-button.is-toggled:before{content:url(../img/icon-secret-sauce-caret-down.png)}
 @media (min-width:56.25em){.secret-button{padding:20px 0;font-size:22px;font-size:1.375rem}
 .secret-button:before{margin-left:-48px;padding-top:15px;width:96px;height:48px;top:-30px;border-radius:48px 48px 0 0}}
 .secret-content{position:relative;display:none;overflow:hidden;background:url(../img/bg-secret-content.png) center/contain no-repeat #000}
-.secret-content .col{padding:0;font-size:13px;font-size:.8125rem;font-family:volkorn;font-style:italic;line-height:1.35;text-align:center;color:#fff}
+.secret-content .col{padding:0;font-size:13px;font-size:.8125rem;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;font-style:italic;line-height:1.35;text-align:center;color:#fff}
 .secret-content .lead p{padding:10px 0;font-size:18px;font-size:1.125rem;font-style:normal;line-height:1;text-align:center;color:#95784e;border:1px solid #fff;border-width:1px 0}
 @media (min-width:43.75em){.secret-content{padding:40px 0}
 .secret-content:before{content:'';margin-left:-75px;width:150px;height:1px;display:block;position:absolute;top:0;left:50%;background:#95784e}
@@ -184,7 +183,7 @@ textarea:focus:-ms-input-placeholder{opacity:.2}
 .contact,.experience,.people{padding:40px 0}
 @media (min-width:43.75em){.contact,.experience,.people{padding:80px 0}}
 @media (min-width:56.25em){.contact,.experience,.people{padding:120px 0}}
-.section-title{font-size:18px;font-size:1.125rem;font-family:Vollkorn,Georgia,Cambria,"Times New Roman",Times,serif;font-style:italic;text-align:center;text-transform:none;line-height:1.25;letter-spacing:.08em}
+.section-title{font-size:18px;font-size:1.125rem;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;font-style:italic;text-align:center;text-transform:none;line-height:1.25;letter-spacing:.08em}
 .section-title em{display:inline-block;position:relative;font-family:Nevis,"Helvetica Neue",HelveticaNeue,Helvetica,Arial,sans-serif;font-style:normal;text-transform:uppercase}
 .section-title em:after,.section-title em:before{display:block;width:38px;height:10px;position:absolute;top:-2px}
 .section-title em:before{content:url(../img/bg-section-title-before-sm.png);left:-55px}
@@ -196,7 +195,7 @@ textarea:focus:-ms-input-placeholder{opacity:.2}
 .section-title em:after,.section-title em:before{width:91px;height:31px;top:3px}
 .section-title em:before{content:url(../img/bg-section-title-before.png);left:-112px}
 .section-title em:after{content:url(../img/bg-section-title-after.png);right:-112px}}
-.section-blurb{margin:0 0 40px;font-size:12px;font-size:.75rem;font-family:Vollkorn,Georgia,Cambria,"Times New Roman",Times,serif;font-weight:400;font-style:italic;line-height:1.3;text-align:center}
+.section-blurb{margin:0 0 40px;font-size:12px;font-size:.75rem;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;font-weight:400;font-style:italic;line-height:1.3;text-align:center}
 @media (min-width:30em){.section-blurb{font-size:14px;font-size:.875rem}}
 @media (min-width:43.75em){.section-blurb{font-size:20px;font-size:1.25rem;line-height:1.5}}
 @media (min-width:56.25em){.section-blurb{margin-left:auto;margin-right:auto;width:75%;font-size:23px;font-size:1.4375rem}}
@@ -214,7 +213,7 @@ textarea:focus:-ms-input-placeholder{opacity:.2}
 .person:hover figcaption{transform:translateX(0);opacity:1}
 .person .person-name{margin:0 0 10px;padding:0 0 10px;position:relative;font-size:11px;font-size:.6875rem;color:#fff}
 .person .person-name:after{content:'';width:25%;height:1px;display:block;position:absolute;left:50%;bottom:0;transform:translate3d(-50%,0,0);background:#fff}
-.person .person-title{margin:0 0 3px;font-size:10px;font-size:.625rem;font-family:Vollkorn,Georgia,Cambria,"Times New Roman",Times,serif;font-style:italic;line-height:1}
+.person .person-title{margin:0 0 3px;font-size:10px;font-size:.625rem;font-family:Merriweather,Georgia,Cambria,"Times New Roman",Times,serif;font-style:italic;line-height:1}
 .person .person-hometown{margin:0;font-size:8px;font-size:.5rem;font-family:Nevis,"Helvetica Neue",HelveticaNeue,Helvetica,Arial,sans-serif;text-transform:uppercase}
 @media (min-width:48em){.person{width:25%}
 .person figcaption{padding:20% 10%;letter-spacing:.2em}
@@ -248,7 +247,7 @@ textarea:focus:-ms-input-placeholder{opacity:.2}
 .project-hero-container img{width:100%;position:absolute;top:0;left:0}
 .panel.has-bg{background:url(../img/bg-texture.png) #f0f0f0}
 .panel-collection{padding:30px 0}
-.panel-collection.panel-collection--centered{margin:0 auto;max-width:980px}
+.panel-collection.panel-collection--3060,.panel-collection.panel-collection--6030,.panel-collection.panel-collection--centered{margin:0 auto;max-width:980px}
 .panel-collection.panel-collection--narrow{margin:0 auto;max-width:720px}
 .panel-collection.panel-collection--full{padding:0}
 @media (min-width:43.75em){.panel-collection{padding:50px 0}}
@@ -309,7 +308,7 @@ textarea:focus:-ms-input-placeholder{opacity:.2}
 .parallax-mirror .parallax-slider{max-width:none}
 .project-content{width:100%;position:absolute;top:50%;transform:translate(0,-50%);text-align:center}
 .project-content .project-title{margin:0 auto 15px;font-size:24px;font-size:1.5rem;letter-spacing:.1em;color:#fff}
-.project-content .project-button{padding:10px 30px;display:inline-block;font-size:18px;font-size:1.125rem;font-family:Vollkorn,Georgia,Cambria,"Times New Roman",Times,serif;font-style:italic;line-height:1;text-decoration:none;color:#fff;border:1px solid #fff}
+.project-content .project-button{padding:10px 30px;display:inline-block;font-size:18px;font-size:1.125rem;font-family:vollkorn;font-style:italic;line-height:1;text-decoration:none;color:#fff;border:1px solid #fff}
 .project-content .project-button:hover{color:#95784e;background:#fff}
 @media (min-width:56.25em){.project-content .project-title{font-size:40px;font-size:2.5rem;letter-spacing:.3em}
 .project-content .project-button{padding:15px 40px;font-size:21px;font-size:1.3125rem;border-width:2px}}
