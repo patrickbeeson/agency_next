@@ -1,10 +1,13 @@
-from django.db import models
-from agency.utils.validators import validate_file_type
 from sorl.thumbnail import ImageField
 from model_utils.managers import QueryManager
+from ordered_model.models import OrderedModel
+
+from django.db import models
+
+from agency.utils.validators import validate_file_type
 
 
-class Employee(models.Model):
+class Employee(OrderedModel):
     """
     An employee of the agency.
     """
@@ -51,8 +54,19 @@ class Employee(models.Model):
     objects = models.Manager()
     public = QueryManager(is_employed=True).order_by('last_name')
 
-    class Meta:
-        ordering = ['last_name']
+    class Meta(OrderedModel.Meta):
+        pass
+
+    @property
+    def _get_full_name(self):
+        "Return the full name of the employee"
+        if self.middle_name:
+            full_name = '{} {}. {}'.format(
+                self.first_name, self.middle_name[0], self.last_name
+            )
+        else:
+            full_name = '{} {}'.format(self.first_name, self.last_name)
+        return full_name
 
     def __str__(self):
         if self.middle_name:

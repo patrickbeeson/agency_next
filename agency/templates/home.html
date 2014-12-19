@@ -124,7 +124,7 @@
                             {{ medium_mugshot.url }} 400w,
                             {{ small_mugshot.url }} 200w"
                     src="{{ medium_mugshot.url }}"
-                    alt="{{ employee.first_name }} {{ employee.last_name }}">
+                    alt="{{ employee._get_full_name }}">
                         {% endthumbnail %}
                     {% endthumbnail %}
                 {% endthumbnail %}
