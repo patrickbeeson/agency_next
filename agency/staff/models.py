@@ -52,13 +52,13 @@ class Employee(OrderedModel):
     )
 
     objects = models.Manager()
-    public = QueryManager(is_employed=True).order_by('last_name')
+    public = QueryManager(is_employed=True)
 
     class Meta(OrderedModel.Meta):
         pass
 
     @property
-    def _get_full_name(self):
+    def get_full_name(self):
         "Return the full name of the employee"
         if self.middle_name:
             full_name = '{} {}. {}'.format(
