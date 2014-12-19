@@ -1,7 +1,22 @@
 {% extends "base_project.html" %}
 {% load thumbnail %}
+{% load static %}
 
 {% block content %}
+<div class="mast-wrapper">
+    <header class="mast container">
+        <a class="brand" href="/">
+            <img class="brand-symbol" src="{% static 'img/logo-symbol.svg' %}" alt="VA">
+            <img class="brand-full" src="{% static 'img/logo-full.svg' %}" alt="The Variable">
+        </a> <!-- /.brand -->
+        <a href="#" class="hamburger" id="js-hamburger">
+            <span class="bun bun--top"></span>
+            <span class="meat"></span>
+            <span class="bun bun--bottom"></span>
+        </a>
+    </header> <!-- /.mast container -->
+</div> <!-- /.mast-wrapper -->
+
 <section class="project-hero">
     <div class="project-hero-container">
         {% thumbnail project.hero_image "3400x1500" as large_hero %}
@@ -54,4 +69,18 @@
 {% endfor %}
 
 </section>
+
+<div class="projects-wrapper">
+    <section class="projects parallax">
+        {% for project in project_list %}
+        <div class="project">
+            <div class="project-bg" data-parallax="scroll" data-speed="0.5" data-position="top" data-natural-width="3400" data-natural-height="1500" data-image-src="{{ MEDIA_URL }}{{ project.hero_image }}"></div> <!-- /.project-bg -->
+            <div class="project-content">
+                <h2 class="project-title">{{ project.name }}</h2>
+                <a class="project-button" href="{{ project.get_absolute_url }}">View Project</a>
+            </div> <!-- /.project-content -->
+        </div> <!-- /.project -->
+        {% endfor %}
+    </section> <!-- /.projects parallax-->
+</div> <!-- /.projects-wrapper -->
 {% endblock content %}
