@@ -191,16 +191,22 @@
     line-height 1.35
     text-align center
     color #fff
-  .lead
-    p
-      padding 10px 0
-      font-size 18px
-      font-style normal
-      line-height 1
-      text-align center
-      color brand-gold
-      border 1px solid #fff
-      border-width 1px 0
+  p
+    display none
+  .lead-first,
+  .lead-second
+    margin-bottom 0
+    padding 10px 0
+    font-size 18px
+    font-style normal
+    line-height 2
+    text-align center
+    color brand-gold
+    border 1px solid #fff
+    border-width 1px 0
+  .lead-first
+    display block
+
   @media (min-width: 43.75em)
     padding 40px 0
     &:before
@@ -215,26 +221,27 @@
       background brand-gold
     .col
       padding 0 20px
-      font-size 15px
+      font-size 14px
+      line-height 1.7
       text-align left
-    .lead
-      p
-        font-size 22px
-        line-height 1.25
-        text-align left
-  @media (min-width: 48em)
-    //
+    p
+      display block
+    .lead-first
+      display none
+    .lead-second
+      font-size 19px
+      line-height 1.85
+      text-align left
   @media (min-width: 56.25em)
     padding 90px 0
     &:before
       margin-left -150px
       width 300px
     .col
-      padding 0 40px
-      font-size 18px
-      line-height 1.75
-    .lead
-      p
-        padding 40px 0
-        font-size 33px
-        line-height 1.5
+      padding 0 30px
+      font-size 17px
+      line-height 2.25
+    .lead-second
+      padding 40px 0
+      font-size 25px
+      line-height 1.8
