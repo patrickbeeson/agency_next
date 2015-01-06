@@ -165,7 +165,7 @@
         <form role="form" class="contact-form container" method="post" novalidate="novalidate" data-parsley-validate>
             {% csrf_token %}
             <div class="row">
-                <div class="contact-form-left col col--1of2">
+                <div class="contact-form-info col col--1of2">
                     <div class="form-group form-group--name">
                         {{ form.name.errors }}
                         <label class="form-label" for="{{ form.name.id_for_label }}">Name</label>
@@ -182,7 +182,7 @@
                         {{ form.phone }}
                     </div>
                 </div>
-                <div class="contact-form-right col col--1of2">
+                <div class="contact-form-message col col--1of2">
                     <div class="form-group form-group--subject">
                         {{ form.interest.errors }}
                         <label class="form-label" for="{{ form.interest.id_for_label }}">Interest</label>
