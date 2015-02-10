@@ -1,7 +1,7 @@
 {% load thumbnail %}
 
 {% for imageasset in obj.imageasset_set.all %}
-<div class="panel-media panel-media--single">
+<div class="panel-media panel-col panel-col--1of2">
     {% thumbnail imageasset.image "1900" as large_image %}
     {% thumbnail imageasset.image "950" as medium_image %}
     <img

@@ -36,9 +36,8 @@
 
 <section class="panels">
 
-  <div class="panel">
-    <div class="panel-collection panel-collection--narrow">
-      <div class="panel-intro panel-col panel-col--1of1">
+<div class="panel">
+    <div class="panel-intro">
         <div class="project-disciplines">
         {% for category in project.categories.all %}
             <span class="project-discipline">
@@ -56,31 +55,19 @@
         </div> <!-- /.disciplines -->
         <h1 class="project-title">{{ project.name }}</h1>
         <p class="project-description">{{ project.description }}</p>
-      </div> <!-- /.panel-content panel-intro panel-col panel-col--1of1 -->
-    </div> <!-- /.panel-collection panel-collection--narrow -->
-  </div> <!-- /.panel -->
+    </div> <!-- /.panel-intro -->
+</div> <!-- /.panel -->
 
 {% for assetgroup in assetgroup_list %}
-<div class="panel {% if assetgroup.has_emphasis %}has-bg{% endif %}">
-    <div class="panel-collection panel-collection--{{ assetgroup.asset_group_type }}">
+<div class="panel">
     {{ assetgroup.as_html }}
-    </div>
 </div>
 {% endfor %}
 
 </section>
 
-<div class="projects-wrapper">
-    <section class="projects parallax">
-        {% for project in project_list %}
-        <div class="project">
-            <div class="project-bg" data-parallax="scroll" data-speed="0.5" data-position="top" data-natural-width="3400" data-natural-height="1500" data-image-src="{{ MEDIA_URL }}{{ project.hero_image }}"></div> <!-- /.project-bg -->
-            <div class="project-content">
-                <h2 class="project-title">{{ project.name }}</h2>
-                <a class="project-button" href="{{ project.get_absolute_url }}">View Project</a>
-            </div> <!-- /.project-content -->
-        </div> <!-- /.project -->
-        {% endfor %}
-    </section> <!-- /.projects parallax-->
-</div> <!-- /.projects-wrapper -->
+<section class="project-nav">
+  <a href="#" class="project-nav-btn project-nav-btn--prev">Previous Project</a>
+  <a href="#" class="project-nav-btn project-nav-btn--next">Next Project</a>
+</section> <!-- /.project-nav -->
 {% endblock content %}

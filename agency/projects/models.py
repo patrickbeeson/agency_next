@@ -106,14 +106,18 @@ class AssetGroup(OrderedModel):
     TYPE = Choices(
         ('fullbleed', _('Full bleed')),
         ('centered', _('Centered')),
-        ('narrow', _('Centered Narrow')),
-        ('6030', _('60/30')),
-        ('3060', _('30/60')),
+        ('5050', _('50/50')),
+        ('5050_text_left', _('50/50 text left')),
+        ('5050_text_right', _('50/50 text right')),
+        ('collection_text_upper_left', _('Collection text upper left')),
+        ('collection_text_upper_right', _('Collection text upper right')),
+        ('collection_text_lower_left', _('Collection text lower left')),
+        ('collection_text_lower_right', _('Collection text lower right')),
     )
     asset_group_type = models.CharField(
         help_text='Default is centered. Choice impacts display of group.',
         choices=TYPE,
-        max_length=15,
+        max_length=30,
         default=TYPE.centered
     )
     name = models.CharField(
@@ -123,11 +127,6 @@ class AssetGroup(OrderedModel):
     description = models.TextField(
         blank=True,
         help_text='Optional. Plain text only.'
-    )
-    has_emphasis = models.BooleanField(
-        default=False,
-        help_text='Set to True if this asset group needs visual emphasis for \
-            display purposes.'
     )
     project = models.ForeignKey(Project)
     order_with_respect_to = 'project'

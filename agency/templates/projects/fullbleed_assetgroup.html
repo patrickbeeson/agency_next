@@ -2,7 +2,7 @@
 
 {% if obj.videoasset_set.count %}
     {% for videoasset in obj.videoasset_set.all %}
-        <div class="panel-video--full" data-video-id="{{ videoasset.get_video_id }}">
+        <div class="panel-video" data-video-id="{{ videoasset.get_video_id }}">
             {% thumbnail videoasset.get_video_thumbnail_url "3400x1500" as large_thumbnail %}
             {% thumbnail videoasset.get_video_thumbnail_url "1700x750" as medium_thumbnail %}
             {% thumbnail videoasset.get_video_thumbnail_url "850x375" as small_thumbnail %}
@@ -16,11 +16,11 @@
             {% endthumbnail %}
             {% endthumbnail %}
             <a class="video-icon"></a>
-        </div> <!-- /.panel-media--full -->
+        </div> <!-- /.panel-video -->
     {% endfor %}
 {% elif obj.imageasset_set.count == 1 %}
     {% for imageasset in obj.imageasset_set.all %}
-        <div class="panel-media--full">
+        <div class="panel-media panel-media--full">
             {% thumbnail imageasset.image "3400x1500" as large_image %}
             {% thumbnail imageasset.image "1700x450" as medium_image %}
             {% thumbnail imageasset.image "850x225" as small_image %}
@@ -36,7 +36,7 @@
         </div> <!-- /.panel-media--full -->
     {% endfor %}
 {% elif obj.imageasset_set.count > 1 %}
-        <div class="slides slides--full">
+        <div class="slides">
             {% for imageasset in obj.imageasset_set.all %}
             <div class="slide">
                 <div class="slide-media">

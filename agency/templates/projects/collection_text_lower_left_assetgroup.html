@@ -1,0 +1,46 @@
+{% load thumbnail %}
+
+<div class="panel-collection">
+    <div class="panel-collection-inner">
+        <div class="panel-col panel-col--1of2">
+            <div class="panel-row panel-row--media">
+                {% for imageasset in obj.imageasset_set.all %}
+                {% if not imageasset.image|is_portrait %}
+                    {% thumbnail imageasset.image "1246" as large_image %}
+                    {% thumbnail imageasset.image "623" as medium_image %}
+                    <img
+                        srcset="{{ large_image.url }} 1246w,
+                        {{ medium_image.url }} 623w"
+                        src="{{ medium_image.url }}"
+                        alt="{{ imageasset.name }}">
+                    {% endthumbnail %}
+                    {% endthumbnail %}
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="panel-row panel-row--content">
+                <div class="row-content">
+                    {% for textasset in obj.textasset_set.all %}
+                    {% if textasset.title %}<h3>{{ textasset.title }}</h3>{% endif %}
+                    <p>{{ textasset.text }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="panel-col panel-col--1of2">
+            {% for imageasset in obj.imageasset_set.all %}
+            {% if imageasset.image|is_portrait %}
+                {% thumbnail imageasset.image "1246" as large_image %}
+                {% thumbnail imageasset.image "623" as medium_image %}
+                <img
+                    srcset="{{ large_image.url }} 1246w,
+                    {{ medium_image.url }} 623w"
+                    src="{{ medium_image.url }}"
+                    alt="{{ imageasset.name }}">
+                {% endthumbnail %}
+                {% endthumbnail %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

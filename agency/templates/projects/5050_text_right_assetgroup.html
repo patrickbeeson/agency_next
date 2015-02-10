@@ -1,14 +1,7 @@
 {% load thumbnail %}
 
-{% if obj.textasset_set.count %}
-{% for textasset in obj.textasset_set.all %}
-    <div class="panel-content panel-col panel-col--1of3">
-        {% if textasset.title %}<h3>{{ textasset.title }}</h3>{% endif %}
-        <p>{{ textasset.text }}</p>
-    </div>
-{% endfor %}
 {% for imageasset in obj.imageasset_set.all %}
-    <div class="panel-media panel-col panel-col--2of3">
+    <div class="panel-media panel-col panel-col--1of2">
         {% thumbnail imageasset.image "1246" as large_image %}
         {% thumbnail imageasset.image "623" as medium_image %}
         <img
@@ -20,4 +13,13 @@
         {% endthumbnail %}
     </div>
 {% endfor %}
-{% endif %}
+{% for textasset in obj.textasset_set.all %}
+    <div class="panel-content panel-col panel-col--1of2">
+        <div class="panel-content-outer">
+            <div class="panel-content-inner">
+                {% if textasset.title %}<h3>{{ textasset.title }}</h3>{% endif %}
+                <p>{{ textasset.text }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
