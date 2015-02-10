@@ -40,7 +40,7 @@ gulp.task('styles', function() {
 gulp.task('minify-css', function() {
     gulp.src('agency/static/css/all.min.css')
         .pipe(minifyCSS({keepBreaks:true}))
-        .pipe(gulp.dest('agency/static/css'))
+        .pipe(gulp.dest('agency/static/css'));
 });
 
 // Concatenate and minify js

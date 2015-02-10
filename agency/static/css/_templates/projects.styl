@@ -26,65 +26,32 @@
     //
 
 // --------------------------------------------------
-//   PANELS, PANEL & PANEL COLLECTION
+//   PANELS, PANEL, PANEL COLUMNS, & PANEL COLLECTIONS
 // --------------------------------------------------
 .panels
   //
 
 .panel
+  @extends .row
+  position relative
   &.has-bg
     background brand-gray-lighter url(../img/bg-texture.png)
 
-.panel-collection
-  @extends .row
-  padding 30px 0
-  &.panel-collection--centered,
-  &.panel-collection--6030,
-  &.panel-collection--3060
-    margin 0 auto
-    max-width 980px
-  &.panel-collection--narrow
-    margin 0 auto
-    max-width 720px
-  &.panel-collection--full
-    padding 0
-  @media (min-width: 43.75em)
-    padding 50px 0
-
 .panel-col
-  @extends .col
-  + .panel-col
-    margin-top col-gutter
   @media (min-width: 43.75em)
-    + .panel-col
-      margin-top 0
+    float left
 
-@media (min-width: 43.75em)
-  .panel-col--1of1
-    @extends .col--1of1
-  .panel-col--1of2
-    @extends .col--1of2
-  .panel-col--1of3
-    @extends .col--1of3
-  .panel-col--2of3
-    @extends .col--2of3
-  .panel-col--1of4
-    @extends .col--1of4
-  .panel-col--2of4
-    @extends .col--2of4
-  .panel-col--3of4
-    @extends .col--3of4
-
-.panel-col--1of1
-  + .panel-col--1of1
-    margin-top (col-gutter/2)
-    @media (min-width: 43.75em)
-      margin-top col-gutter
+.panel-col--1of2
+  @media (min-width: 43.75em)
+    width 50%
 
 // --------------------------------------------------
 //   PANEL INTRO, CONTENT, MEDIA & VIDEO
 // --------------------------------------------------
 .panel-intro
+  margin 0 auto
+  padding 30px
+  max-width 980px
   text-align center
   .project-disciplines
     margin 0 auto 10px
@@ -111,40 +78,53 @@
     .project-description
       font-size 18px
 
-.panel-content
+.panel-content-outer
+  @media (min-width: 43.75em)
+    width 50%
+    height 100%
+    position absolute // Positioned absolutely relative to .panel
+    overflow hidden // So no content will spill out
+
+.panel-content-inner
+  padding 30px
+  text-align center
   p
     font-size 12px
     &:last-child
       margin-bottom 0
-  .panel-collection--narrow &
-    text-align center
   @media (min-width: 43.75em)
+    padding 0 10%
+    position absolute
+    top 50%
+    transform translateY(-50%)
     p
-      font-size 18px
+      font-size 16px
 
 .panel-media
-  .panel-collection--narrow &
-    img
-      margin 0 auto
-      width 75%
-  @media (min-width: 43.75em)
-    .panel-collection--narrow &
-      img
-        margin 0 auto
-        width 100%
-
-.panel-media--full
-  padding-top 26.47% // To keep aspect ratio of images intact: 450/1700 = .264705882
-  position relative
   img
     width 100%
-    position absolute
-    top 0
-    left 0
-  @media (min-width: 43.75em)
-    //
+    height auto
 
-.panel-video--full
+.panel-media--single
+  padding 30px
+  background #ececec
+  img
+    margin 0 auto
+    width initial
+    max-width 100%
+    height auto
+  @media (min-width: 43.75em)
+    padding 150px 0
+
+.panel-media--full
+  // padding-top 26.47% // To keep aspect ratio of images intact: 450/1700 = .264705882
+  // position relative
+  // img
+  //   position absolute
+  //   top 0
+  //   left 0
+
+.panel-video
   padding-top 44.11% // To keep aspect ratio of images intact: 750/1700 = .441176471
   position relative // For positioning poster image, video play icon and video iframe
   img
@@ -175,6 +155,52 @@
       left 0
   @media (min-width: 43.75em)
     //
+
+.panel-collection
+  @media (min-width: 43.75em)
+    padding-bottom 50%
+    padding-bottom 64.235% // Based on 3400px X 2184px dimensions
+    height 0
+    position relative
+
+.panel-collection-inner
+  .row-content
+    padding 30px
+    text-align center
+    p
+      font-size 12px
+      &:last-child
+        margin-bottom 0
+  @media (min-width: 43.75em)
+    width 100%
+    height 100%
+    position absolute
+    top 0
+    left 0
+    display table
+    .panel-col
+      float none
+      display table-cell
+      vertical-align top
+      img
+        width 100%
+    .panel-row
+      width 100%
+      height 50%
+      display inline-table
+      vertical-align top
+    .panel-row--media
+      //
+    .panel-row--content
+      position relative
+      overflow hidden
+    .row-content
+      padding 0 10%
+      position absolute
+      top 50%
+      transform translateY(-50%)
+      p
+        font-size 16px
 
 // --------------------------------------------------
 //   CAROUSELS (SLIDES)
@@ -271,57 +297,41 @@
   right 0
 
 // --------------------------------------------------
-//   PROJECT LIST
+//   PROJECT NAV
 // --------------------------------------------------
-.projects
-  //
+.project-nav
+  padding-bottom 150px
+  background #ececec
+  clearfix()
 
-.project
-  width 100%
-  height 200px
-  position relative
-  @media (min-width: 56.25em)
-    height 400px
-
-.project-bg
-  width 100%
-  min-height 200px
-  @media (min-width: 56.25em)
-    min-height 400px
-
-.parallax-mirror
-  .parallax-slider
-    max-width none // Removes default img max-width 100%
-
-.project-content
-  width 100%
-  position absolute
-  top 50%
-  transform translate(0, -50%)
+.project-nav-btn
+  height 75px
+  display block
+  font-size 14px
+  font-family nevis
+  line-height 65px
+  letter-spacing .15em
   text-align center
-  .project-title
-    margin 0 auto 15px
-    font-size 24px
-    letter-spacing .1em
-    color #fff
-  .project-button
-    padding 10px 30px
-    display inline-block
-    font-size 18px
-    font-family vollkorn
-    font-style italic
-    line-height 1
-    text-decoration none
-    color #fff
-    border 1px solid #fff
-    &:hover
-      color brand-gold
-      background #fff
-  @media (min-width: 56.25em)
-    .project-title
-      font-size 40px
-      letter-spacing 0.3em
-    .project-button
-      padding 15px 40px
-      font-size 21px
-      border-width 2px
+  text-decoration none
+  text-transform uppercase
+  color #fff
+  @media (min-width: 43.75em)
+    width 50%
+    height 150px
+    float left
+    font-size 20px
+    line-height 150px
+
+.project-nav-btn--prev
+  background brand-gray-darker
+  &:before
+    content '«'
+    padding-right 20px
+    font-size 30px
+
+.project-nav-btn--next
+  background brand-gray-dark
+  &:after
+    content '»'
+    padding-left 20px
+    font-size 30px
