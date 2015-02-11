@@ -3,13 +3,13 @@
 {% if obj.videoasset_set.count %}
     {% for videoasset in obj.videoasset_set.all %}
         <div class="panel-video" data-video-id="{{ videoasset.get_video_id }}">
-            {% thumbnail videoasset.get_video_thumbnail_url "3400x1500" as large_thumbnail %}
-            {% thumbnail videoasset.get_video_thumbnail_url "1700x750" as medium_thumbnail %}
-            {% thumbnail videoasset.get_video_thumbnail_url "850x375" as small_thumbnail %}
+            {% thumbnail videoasset.get_video_thumbnail_url "1920" as large_thumbnail %}
+            {% thumbnail videoasset.get_video_thumbnail_url "960" as medium_thumbnail %}
+            {% thumbnail videoasset.get_video_thumbnail_url "480" as small_thumbnail %}
             <img
-                srcset="{{ large_thumbnail.url }} 3400w,
-                {{ medium_thumbnail.url }} 1700w,
-                {{ small_thumbnail.url }} 850w"
+                srcset="{{ large_thumbnail.url }} 1920w,
+                {{ medium_thumbnail.url }} 960w,
+                {{ small_thumbnail.url }} 480w"
                 src="{{ medium_thumbnail.url }}"
                 alt="{{ videoasset.name }}">
             {% endthumbnail %}
@@ -21,13 +21,13 @@
 {% elif obj.imageasset_set.count == 1 %}
     {% for imageasset in obj.imageasset_set.all %}
         <div class="panel-media panel-media--full">
-            {% thumbnail imageasset.image "3400x1500" as large_image %}
-            {% thumbnail imageasset.image "1700x450" as medium_image %}
-            {% thumbnail imageasset.image "850x225" as small_image %}
+            {% thumbnail imageasset.image "1920" as large_image %}
+            {% thumbnail imageasset.image "960" as medium_image %}
+            {% thumbnail imageasset.image "480" as small_image %}
             <img
-                srcset="{{ large_image.url }} 3400w,
-                {{ medium_image.url }} 1700w,
-                {{ small_image.url }} 850w"
+                srcset="{{ large_image.url }} 1920w,
+                {{ medium_image.url }} 960w,
+                {{ small_image.url }} 480w"
                 src="{{ medium_image.url }}"
                 alt="{{ imageasset.name }}">
             {% endthumbnail %}
@@ -40,13 +40,13 @@
             {% for imageasset in obj.imageasset_set.all %}
             <div class="slide">
                 <div class="slide-media">
-                    {% thumbnail imageasset.image "3400x1500" as large_image %}
-                    {% thumbnail imageasset.image "1700x450" as medium_image %}
-                    {% thumbnail imageasset.image "850x225" as small_image %}
+                    {% thumbnail imageasset.image "1920" as large_image %}
+                    {% thumbnail imageasset.image "960" as medium_image %}
+                    {% thumbnail imageasset.image "480" as small_image %}
                     <img
-                        srcset="{{ large_image.url }} 3400w,
-                        {{ medium_image.url }} 1700w,
-                        {{ small_image.url }} 850w"
+                        srcset="{{ large_image.url }} 1920w,
+                        {{ medium_image.url }} 960w,
+                        {{ small_image.url }} 480w"
                         src="{{ medium_image.url }}"
                         alt="{{ imageasset.name }}">
                     {% endthumbnail %}

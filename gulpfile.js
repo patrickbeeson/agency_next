@@ -69,3 +69,4 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['minify-css', 'lint', 'stylus', 'styles', 'scripts', 'watch']);
+gulp.task('css', ['stylus', 'styles', 'minify-css']);

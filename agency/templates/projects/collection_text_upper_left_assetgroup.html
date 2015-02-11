@@ -14,13 +14,17 @@
             <div class="panel-row panel-row--media">
                 {% for imageasset in obj.imageasset_set.all %}
                 {% if not imageasset.image|is_portrait %}
-                    {% thumbnail imageasset.image "1246" as large_image %}
-                    {% thumbnail imageasset.image "623" as medium_image %}
+                    {% thumbnail imageasset.image "1700" as large_image %}
+                    {% thumbnail imageasset.image "850" as medium_image %}
+                    {% thumbnail imageasset.image "425" as small_image %}
                     <img
-                        srcset="{{ large_image.url }} 1246w,
-                        {{ medium_image.url }} 623w"
+                        srcset="{{ large_image.url }} 1700w,
+                        {{ medium_image.url }} 850w,
+                        {{ small_image.url }} 425w"
                         src="{{ medium_image.url }}"
+                        sizes="(min-width: 43.75em) 50vw, 100vw"
                         alt="{{ imageasset.name }}">
+                    {% endthumbnail %}
                     {% endthumbnail %}
                     {% endthumbnail %}
                 {% endif %}
@@ -30,13 +34,17 @@
         <div class="panel-col panel-col--1of2">
             {% for imageasset in obj.imageasset_set.all %}
             {% if imageasset.image|is_portrait %}
-                {% thumbnail imageasset.image "1246" as large_image %}
-                {% thumbnail imageasset.image "623" as medium_image %}
+                {% thumbnail imageasset.image "1700" as large_image %}
+                {% thumbnail imageasset.image "850" as medium_image %}
+                {% thumbnail imageasset.image "425" as small_image %}
                 <img
-                    srcset="{{ large_image.url }} 1246w,
-                    {{ medium_image.url }} 623w"
+                    srcset="{{ large_image.url }} 1700w,
+                    {{ medium_image.url }} 850w,
+                    {{ small_image.url }} 425w"
                     src="{{ medium_image.url }}"
+                    sizes="(min-width: 43.75em) 50vw, 100vw"
                     alt="{{ imageasset.name }}">
+                {% endthumbnail %}
                 {% endthumbnail %}
                 {% endthumbnail %}
             {% endif %}

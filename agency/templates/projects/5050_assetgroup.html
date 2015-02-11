@@ -2,13 +2,17 @@
 
 {% for imageasset in obj.imageasset_set.all %}
 <div class="panel-media panel-col panel-col--1of2">
-    {% thumbnail imageasset.image "1900" as large_image %}
-    {% thumbnail imageasset.image "950" as medium_image %}
+    {% thumbnail imageasset.image "1700" as large_image %}
+    {% thumbnail imageasset.image "850" as medium_image %}
+    {% thumbnail imageasset.image "425" as small_image %}
     <img
-        srcset="{{ large_image.url }} 1900w,
-        {{ medium_image.url }} 950w"
+        srcset="{{ large_image.url }} 1700w,
+        {{ medium_image.url }} 850w,
+        {{ small_image.url }} 425w"
         src="{{ medium_image.url }}"
+        sizes="(min-width: 43.75em) 50vw, 100vw"
         alt="{{ imageasset.name }}">
+    {% endthumbnail %}
     {% endthumbnail %}
     {% endthumbnail %}
 </div>
