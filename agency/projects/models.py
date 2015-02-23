@@ -98,6 +98,26 @@ class Project(OrderedModel):
     def get_absolute_url(self):
         return reverse('project_detail', kwargs={'slug': self.slug})
 
+    def get_next(self):
+        """
+        Method to return the next object by order field.
+        """
+        next = self.__class__.objects.filter(order__gt=self.order)
+        try:
+            return next[0].get_absolute_url()
+        except IndexError:
+            return False
+
+    def get_previous(self):
+        """
+        Method to return the previous object by order field.
+        """
+        previous = self.__class__.objects.filter(order__lt=self.order)
+        try:
+            return previous[0].get_absolute_url()
+        except IndexError:
+            return False
+
 
 class AssetGroup(OrderedModel):
     """

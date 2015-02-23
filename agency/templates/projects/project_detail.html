@@ -67,7 +67,15 @@
 </section>
 
 <section class="project-nav">
-  <a href="#" class="project-nav-btn project-nav-btn--prev">Previous Project</a>
-  <a href="#" class="project-nav-btn project-nav-btn--next">Next Project</a>
+    {% if project.get_previous %}
+    <a href="{{ project.get_previous }}" class="project-nav-btn project-nav-btn--prev">Previous Project</a>
+    {% else %}
+    <a href="/" class="project-nav-btn project-nav-btn--prev">Home</a>
+    {% endif %}
+    {% if project.get_next %}
+    <a href="{{ project.get_next }}" class="project-nav-btn project-nav-btn--next">Next Project</a>
+    {% else %}
+    <a href="/" class="project-nav-btn project-nav-btn--next">Home</a>
+    {% endif %}
 </section> <!-- /.project-nav -->
 {% endblock content %}

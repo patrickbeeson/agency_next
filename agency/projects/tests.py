@@ -67,8 +67,7 @@ class ProjectTest(TestCase):
             name='Lowes Foods digital',
             asset_group_type='centered',
             description='Digital screenshots for Lowes Foods redesign.',
-            project=self.valid_project,
-            has_emphasis=True
+            project=self.valid_project
         )
         self.image_asset = ImageAsset.objects.create(
             name='Screenshot',
@@ -93,6 +92,16 @@ class ProjectTest(TestCase):
         )
         self.assetgroup_list = AssetGroup.objects.all()
         self.project_list = Project.featured.all()
+
+    def test_get_next_project(self):
+        observed = self.valid_project.get_next()
+        expected = '/spinmaster/'
+        self.assertEqual(observed, expected)
+
+    def test_get_previous_project(self):
+        observed = self.valid_project_2.get_next()
+        expected = '/primo-water/'
+        self.assertEqual(observed, expected)
 
     def test_project_view_renders_template(self):
         slug = self.valid_project.slug
