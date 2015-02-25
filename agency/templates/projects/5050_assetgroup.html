@@ -1,6 +1,6 @@
 {% load thumbnail %}
 
-{% for imageasset in obj.imageasset_set.all %}
+{% for imageasset in obj.imageasset_set.all|dictsort:'id' %}
 <div class="panel-media panel-col panel-col--1of2">
     {% thumbnail imageasset.image "1700" as large_image %}
     {% thumbnail imageasset.image "850" as medium_image %}
